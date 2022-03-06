@@ -18,6 +18,10 @@
         content=" Bantal Aroma Terapy yang menggunakan bahan-bahan
         alami sebagai base pembuatannya">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      property="og:image"
+      content="{{asset('images/baroti_thumbnail.png')}}"
+    />
 
     <!-- SITE TITLE -->
     <title>Ba Ro Ti</title>
