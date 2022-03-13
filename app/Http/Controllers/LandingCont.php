@@ -9,6 +9,7 @@ use App\Models\Bahan;
 use App\Models\Ajakan;
 use App\Models\Testi;
 use App\Models\Keunggulan;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class LandingCont extends Controller
