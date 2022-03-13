@@ -21,6 +21,7 @@ class LandingCont extends Controller
         $bahan = Bahan::all();
         $ajakan = Ajakan::first();
         $testi = Testi::all();
-        return view('fe.landing',compact('slider','about','keunggulan','bahan','ajakan','testi'));
+        $profile = Profile::first();
+        return view('fe.landing',compact('slider','about','keunggulan','bahan','ajakan','testi','profile'));
     }
 }

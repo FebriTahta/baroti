@@ -1,5 +1,27 @@
 @extends('layouts.new_fe.master')
 
+@section('logo')
+@if ($profile !== null)
+<div class="wsmobileheader clearfix">
+    <span class="smllogo"><img src="{{ asset('img_profile/'.$profile->image_header) }}" width="170" height="50"
+            alt="mobile-logo" /></span>
+    <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+</div>
+@endif
+@endsection
+
+@section('logo2')
+<div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
+    src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
+    alt="header-logo"></a>
+</div>
+<div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
+    src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
+    alt="header-logo"></a>
+</div>
+@endsection
+
+
 @section('menu')
     <header id="header" class="header tra-menu navbar-light">
         <div class="header-wrapper">
@@ -7,13 +29,10 @@
 
             <!-- MOBILE HEADER -->
 
-
-            @yield('logo')
-            <div class="wsmobileheader clearfix">
-                <span class="smllogo"><img src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
-                        alt="mobile-logo" /></span>
-                <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
-            </div>
+ 
+            {{-- @yield('logo') --}}
+           
+            
 
 
             <!-- NAVIGATION MENU -->
@@ -24,15 +43,7 @@
                     <!-- LOGO IMAGE -->
                     <!-- For Retina Ready displays take a image with double the amount of pixels that your image will be displayed (e.g 340 x 100 pixels) -->
 
-                    @yield('logo2')
-                    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
-                                src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
-                                alt="header-logo"></a>
-                    </div>
-                    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
-                                src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
-                                alt="header-logo"></a>
-                    </div>
+                    {{-- @yield('logo2') --}}
 
                     <!-- MAIN MENU -->
                     <nav class="wsmenu clearfix">
