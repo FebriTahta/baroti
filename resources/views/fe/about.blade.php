@@ -1,5 +1,5 @@
 @extends('layouts.new_fe.master')
-{{-- @section('logo')
+@section('logo')
     @if ($profile !== null)
         <div class="wsmobileheader clearfix">
             <span class="smllogo"><img src="{{ asset('img_profile/' . $profile->image_header) }}" width="170"
@@ -16,7 +16,7 @@
     <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
                 width="170" height="50" alt="header-logo"></a>
     </div>
-@endsection --}}
+@endsection
 @section('menu')
 <div id="loader-wrapper">
     <div id="loading">
