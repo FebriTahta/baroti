@@ -61,12 +61,15 @@ class AjakanCont extends Controller
                 ]
             );
         }
-        $ya;
-        foreach ($request->linkbutton_id as $key => $value) {
+        if ($request->linkbutton_id !== null) {
             # code...
-            $ya[] = $value;
+            $ya;
+            foreach ($request->linkbutton_id as $key => $value) {
+                # code...
+                $ya[] = $value;
+            }
+            $data->linkbutton()->sync($ya);
         }
-        $ok = Ajakan::find(1)->linkbutton()->sync($ya);
     
         return response()->json(
             [

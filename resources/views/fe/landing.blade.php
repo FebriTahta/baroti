@@ -415,7 +415,7 @@
 
                             <!-- Text -->
                             <p class="p-md txt-color-05">
-                                {{$ajakan->deskripsi}}aa
+                                {{$ajakan->deskripsi}}
                             </p>
 
                             {{-- @if ($ajakan->linkbutton->count() > 0) --}}
