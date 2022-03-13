@@ -15,8 +15,8 @@
     </div>
     <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
                 width="170" height="50" alt="header-logo"></a>
-    </div> --}}
-@endsection
+    </div>
+@endsection --}}
 @section('menu')
 <div id="loader-wrapper">
     <div id="loading">
