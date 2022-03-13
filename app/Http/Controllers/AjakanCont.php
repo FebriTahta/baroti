@@ -116,6 +116,10 @@ class AjakanCont extends Controller
 
     public function be_link_button_dell(Request $request)
     {
+        $data = Linkbutton::find($request->id);
+        $data->ajakan()->detach();
+        $data->slider()->detach();
+        $data->product()->detach();
         Linkbutton::find($request->id)->delete();
         return response()->json(
             [
