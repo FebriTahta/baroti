@@ -191,7 +191,7 @@
                         ============================================= -->
 
     @if ($about == null)
-        <section id="about-2" class="bg-color-01 wide-70 about-section division">
+        {{-- <section id="about-2" class="bg-color-01 wide-70 about-section division">
             <div class="container">
                 <div class="row d-flex align-items-center m-row">
 
@@ -226,7 +226,7 @@
 
                 </div> <!-- End row -->
             </div> <!-- End container -->
-        </section> <!-- END ABOUT-2 -->
+        </section> <!-- END ABOUT-2 --> --}}
     @else
         <section id="about-2" class="bg-color-01 wide-70 about-section division">
             <div class="container">
@@ -254,7 +254,7 @@
                     <!-- IMAGE BLOCK -->
                     <div class="col-md-5 col-lg-6 m-top">
                         <div class="img-block right-column pc-15 mb-40">
-                            <img class="img-fluid" src="images/image-02.png" alt="about-image">
+                            <img class="img-fluid" src="{{asset('img_about/'.$about->img)}}" alt="about-image">
                         </div>
                     </div>
 
