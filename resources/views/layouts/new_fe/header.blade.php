@@ -124,9 +124,9 @@
     <div id="page" class="page">
 
         @if ($profile !== null)
-            @section('logo')
+            {{-- @section('logo')
                 <div class="wsmobileheader clearfix">
-                    <span class="smllogo"><img src="{{ asset('img_thumbnail/'.$profile->img_thumbnail) }}" width="170" height="50"
+                    <span class="smllogo"><img src="{{ asset('img_thumbnail/'.$profile->th) }}" width="170" height="50"
                             alt="mobile-logo" /></span>
                     <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
                 </div>
@@ -139,7 +139,7 @@
                 <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
                             src="{{ asset('img_thumbnail/'.$profile->img_thumbnail) }}" width="170" height="50" alt="header-logo"></a>
                 </div>
-            @endsection
+            @endsection --}}
         @else
             @section('logo')
                 <div class="wsmobileheader clearfix">
