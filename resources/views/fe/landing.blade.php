@@ -419,12 +419,12 @@
                             </p>
 
                             {{-- @if ($ajakan->linkbutton->count() > 0) --}}
-                            {{-- @foreach ($ajakan->linkbutton as $item)
-                            <a href="{{$item->link}}" target="_blank" class="btn btn-md btn-color-02 color-01-hover">{{$item->name}}</a>
-                            @endforeach --}}
                             @foreach ($ajakan->linkbutton as $item)
-                                {{$item}}
+                            <a href="{{$item->link}}" target="_blank" class="btn btn-md btn-color-02 color-01-hover">{{$item->name}}</a>
                             @endforeach
+                            {{-- @foreach ($ajakan->linkbutton as $item)
+                                {{$item}}
+                            @endforeach --}}
                             {{-- @endif --}}
 
                         </div>
