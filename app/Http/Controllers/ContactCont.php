@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use Validator;
 use App\Models\Contact;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class ContactCont extends Controller
@@ -10,7 +11,8 @@ class ContactCont extends Controller
     public function contact()
     {
         $contact = Contact::first();
-        return view('fe.contact',compact('contact'));
+        $profile = Profile::first();
+        return view('fe.contact',compact('profile','contact'));
     }
 
     public function be_contact()

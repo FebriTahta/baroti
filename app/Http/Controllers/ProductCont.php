@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Product;
+use App\Models\Profile;
 use App\Models\Link;
 use App\Models\Tag;
 use App\Models\Kategori;
@@ -17,7 +18,8 @@ class ProductCont extends Controller
 {
     public function product(){
         $product = Product::all();
-        return view('fe.product',compact('product'));
+        $profile = Profile::first();
+        return view('fe.product',compact('product','profile'));
     }
 
     public function index(Request $request)
