@@ -16,6 +16,6 @@ class Ajakan extends Model
 
     public function linkbutton()
     {
-        return $this->belongsToMany(LinkButton::class);
+        return $this->belongsToMany(Linkbutton::class);
     }
 }
