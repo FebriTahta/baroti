@@ -1,6 +1,6 @@
 @extends('layouts.new_fe.master')
 
-@section('logo')
+{{-- @section('logo')
     @if ($profile !== null)
         <div class="wsmobileheader clearfix">
             <span class="smllogo"><img src="{{ asset('img_profile/' . $profile->image_header) }}" width="170"
@@ -11,13 +11,13 @@
 @endsection
 
 @section('logo2')
-    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
-                width="170" height="50" alt="header-logo"></a>
+    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
+                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50" alt="header-logo"></a>
     </div>
-    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
-                width="170" height="50" alt="header-logo"></a>
+    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
+                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50" alt="header-logo"></a>
     </div>
-@endsection
+@endsection --}}
 
 
 @section('menu')
@@ -29,7 +29,13 @@
 
 
             {{-- @yield('logo') --}}
-
+            @if ($profile !== null)
+                <div class="wsmobileheader clearfix">
+                    <span class="smllogo"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
+                            width="170" height="50" alt="mobile-logo" /></span>
+                    <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+                </div>
+            @endif
 
 
 
@@ -42,6 +48,14 @@
                     <!-- For Retina Ready displays take a image with double the amount of pixels that your image will be displayed (e.g 340 x 100 pixels) -->
 
                     {{-- @yield('logo2') --}}
+                    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
+                                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50"
+                                alt="header-logo"></a>
+                    </div>
+                    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
+                                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50"
+                                alt="header-logo"></a>
+                    </div>
 
                     <!-- MAIN MENU -->
                     <nav class="wsmenu clearfix">
@@ -77,7 +91,7 @@
                                 <li class="nl-simple" aria-haspopup="true">
                                     <a class="" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                     document.getElementById('logout-form').submit();">
+                                                                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -115,7 +129,7 @@
         </div>
     </div>
     <!-- HERO-7
-                               ============================================= -->
+                                       ============================================= -->
     <section id="hero-7" class="hero-section division">
 
 
@@ -197,7 +211,7 @@
 
 
     <!-- ABOUT-2
-                            ============================================= -->
+                                    ============================================= -->
 
     @if ($about == null)
         {{-- <section id="about-2" class="bg-color-01 wide-70 about-section division">
@@ -278,7 +292,7 @@
 
 
     <!-- SERVICES-13
-                            ============================================= -->
+                                    ============================================= -->
     @if ($keunggulan !== null)
         <section id="services-13" class="bg-color-01 services-section division">
             <div class="container">
@@ -344,7 +358,7 @@
 
 
     <!-- SERVICES-1
-                            ============================================= -->
+                                    ============================================= -->
     @if ($bahan->count() > 0)
         <section id="services-1" class="bg-color-01 wide-60 services-section division">
             <div class="container">
@@ -407,7 +421,7 @@
 
 
     <!-- BANNER-5
-                            ============================================= -->
+                                    ============================================= -->
     @if ($ajakan !== null)
         <section id="banner-5" class="bg-fixed bg-image banner-section division">
             <div class="container">
@@ -450,7 +464,7 @@
 
 
     <!-- TESTIMONIALS-1
-                            ============================================= -->
+                                    ============================================= -->
     <section id="reviews-1" class="bg-color-02 wide-100 reviews-section division">
         <div class="container">
 

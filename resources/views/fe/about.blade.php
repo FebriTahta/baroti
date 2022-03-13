@@ -1,5 +1,5 @@
 @extends('layouts.new_fe.master')
-@section('logo')
+{{-- @section('logo')
     @if ($profile !== null)
         <div class="wsmobileheader clearfix">
             <span class="smllogo"><img src="{{ asset('img_profile/' . $profile->image_header) }}" width="170"
@@ -10,27 +10,27 @@
 @endsection
 
 @section('logo2')
-    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
-                width="170" height="50" alt="header-logo"></a>
+    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
+                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50" alt="header-logo"></a>
     </div>
-    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
-                width="170" height="50" alt="header-logo"></a>
+    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
+                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50" alt="header-logo"></a>
     </div>
-@endsection
+@endsection --}}
 @section('menu')
-<div id="loader-wrapper">
-    <div id="loading">
-        <div class="cssload-loader">
-            <div class="fancy-spinner">
-                <div class="ring"></div>
-                <div class="ring"></div>
-                <div class="dot"></div>
+    <div id="loader-wrapper">
+        <div id="loading">
+            <div class="cssload-loader">
+                <div class="fancy-spinner">
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="dot"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <!-- HEADER
-                   ============================================= -->
+                           ============================================= -->
     <header id="header" class="header white-menu navbar-dark">
         <div class="header-wrapper">
 
@@ -41,6 +41,13 @@
                         alt="mobile-logo" /></span>
                 <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
             </div> --}}
+            @if ($profile !== null)
+                <div class="wsmobileheader clearfix">
+                    <span class="smllogo"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
+                            width="170" height="50" alt="mobile-logo" /></span>
+                    <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+                </div>
+            @endif
 
             <!-- NAVIGATION MENU -->
             <div class="wsmainfull menu clearfix">
@@ -56,6 +63,14 @@
                                 src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
                                 alt="header-logo"></a>
                     </div> --}}
+                    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
+                                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50"
+                                alt="header-logo"></a>
+                    </div>
+                    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
+                                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50"
+                                alt="header-logo"></a>
+                    </div>
 
                     <!-- MAIN MENU -->
                     <nav class="wsmenu clearfix">
@@ -91,7 +106,7 @@
                                 <li class="nl-simple" aria-haspopup="true">
                                     <a class="" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -149,10 +164,10 @@
                             <h2 class="section-id txt-color-02">About Us</h2>
 
                             <!-- Title -->
-                            <h3 class="h3-md txt-color-01">{{$about->judul}}</h3>
+                            <h3 class="h3-md txt-color-01">{{ $about->judul }}</h3>
 
                             <!-- Text -->
-                            <p class="txt-color-05">{{$about->deskirpsi}}
+                            <p class="txt-color-05">{{ $about->deskirpsi }}
                             </p>
 
                         </div>
@@ -173,33 +188,33 @@
     @endif
 
     @if ($bidang !== null)
-    <section id="about-3" class="bg-color-01 wide-60 about-section ">
-        <div class="container">
-            <!-- SECTION TITLE -->
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="section-title mb-60 text-center">
-                        <!-- Transparent Header -->
-                        <h2 class="tra-header txt-color-02">Bidang</h2>
-                        <!-- Title 	-->
-                        <h3 class="h3-xl txt-color-01">{{$bidang->judul}}</h3>
+        <section id="about-3" class="bg-color-01 wide-60 about-section ">
+            <div class="container">
+                <!-- SECTION TITLE -->
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="section-title mb-60 text-center">
+                            <!-- Transparent Header -->
+                            <h2 class="tra-header txt-color-02">Bidang</h2>
+                            <!-- Title 	-->
+                            <h3 class="h3-xl txt-color-01">{{ $bidang->judul }}</h3>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="about-">
-        <div class="container">
-            
-                <p>{!!$bidang->deskripsi!!}</p>
-            
-        </div>
-    </section>
+        <section id="about-">
+            <div class="container">
+
+                <p>{!! $bidang->deskripsi !!}</p>
+
+            </div>
+        </section>
     @endif
 
     <!-- TEAM-1
-        ============================================= -->
+                ============================================= -->
     <section id="team-1" class="bg-color-01 wide-60 team-section division">
         <div class="container">
             <!-- SECTION TITLE -->
@@ -223,18 +238,19 @@
                 <div class="row">
 
                     @if ($team->count() > 0)
-                    @foreach ($team as $item)
-                    <div class="col-md-6 col-lg-3">
-                        <div class="team-member">
+                        @foreach ($team as $item)
+                            <div class="col-md-6 col-lg-3">
+                                <div class="team-member">
 
-                            <!-- Team Member Photo -->
-                            <div class="team-member-photo">
-                                <div class="hover-overlay">
+                                    <!-- Team Member Photo -->
+                                    <div class="team-member-photo">
+                                        <div class="hover-overlay">
 
-                                    <img class="img-fluid" src="{{asset('img_team/'.$item->img)}}" alt="team-member-foto">
+                                            <img class="img-fluid" src="{{ asset('img_team/' . $item->img) }}"
+                                                alt="team-member-foto">
 
-                                    <!-- Social Icons -->
-                                    {{-- <div class="tm-social clearfix">
+                                            <!-- Social Icons -->
+                                            {{-- <div class="tm-social clearfix">
                                         <ul class="text-center clearfix">
                                             <li><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a>
                                             </li>
@@ -244,22 +260,22 @@
                                         </ul>
                                     </div> --}}
 
+                                        </div>
+                                    </div>
+
+                                    <!-- Team Member Meta -->
+                                    <div class="tm-meta">
+                                        <h6 class="h6-lg txt-color-01">{{ $item->nama }}</h6>
+                                        <span class="txt-color-06">{{ $item->jabatan }}</span>
+                                    </div>
+
                                 </div>
                             </div>
-
-                            <!-- Team Member Meta -->
-                            <div class="tm-meta">
-                                <h6 class="h6-lg txt-color-01">{{$item->nama}}</h6>
-                                <span class="txt-color-06">{{$item->jabatan}}</span>
-                            </div>
-
-                        </div>
-                    </div>
-                    @endforeach
+                        @endforeach
                     @else
-                    <div class="col-md-12 text-center">
-                        <h2>BELUM ADA TEAM</h2>
-                    </div>
+                        <div class="col-md-12 text-center">
+                            <h2>BELUM ADA TEAM</h2>
+                        </div>
                     @endif
 
 

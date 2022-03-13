@@ -1,5 +1,5 @@
 @extends('layouts.new_fe.master')
-@section('logo')
+{{-- @section('logo')
     @if ($profile !== null)
         <div class="wsmobileheader clearfix">
             <span class="smllogo"><img src="{{ asset('img_profile/' . $profile->image_header) }}" width="170"
@@ -10,16 +10,16 @@
 @endsection
 
 @section('logo2')
-    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
-                width="170" height="50" alt="header-logo"></a>
+    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
+                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50" alt="header-logo"></a>
     </div>
-    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
-                width="170" height="50" alt="header-logo"></a>
+    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
+                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50" alt="header-logo"></a>
     </div>
-@endsection
+@endsection --}}
 @section('menu')
     <!-- HEADER
-                   ============================================= -->
+                           ============================================= -->
     <header id="header" class="header white-menu navbar-dark">
         <div class="header-wrapper">
 
@@ -31,6 +31,13 @@
                         alt="mobile-logo" /></span>
                 <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
             </div> --}}
+            @if ($profile !== null)
+                <div class="wsmobileheader clearfix">
+                    <span class="smllogo"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
+                            width="170" height="50" alt="mobile-logo" /></span>
+                    <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+                </div>
+            @endif
 
             <!-- NAVIGATION MENU -->
             <div class="wsmainfull menu clearfix">
@@ -46,6 +53,14 @@
                                 src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
                                 alt="header-logo"></a>
                     </div> --}}
+                    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
+                                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50"
+                                alt="header-logo"></a>
+                    </div>
+                    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
+                                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50"
+                                alt="header-logo"></a>
+                    </div>
 
                     <!-- MAIN MENU -->
                     <nav class="wsmenu clearfix">
@@ -81,7 +96,7 @@
                                 <li class="nl-simple" aria-haspopup="true">
                                     <a class="" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                     document.getElementById('logout-form').submit();">
+                                                                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -107,17 +122,17 @@
 @endsection
 
 @section('newfe_content')
-<div id="loader-wrapper">
-    <div id="loading">
-        <div class="cssload-loader">
-            <div class="fancy-spinner">
-                <div class="ring"></div>
-                <div class="ring"></div>
-                <div class="dot"></div>
+    <div id="loader-wrapper">
+        <div id="loading">
+            <div class="cssload-loader">
+                <div class="fancy-spinner">
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="dot"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <section id="services-18" class="bg-color-01 wide-60 services-section division" style="margin-top: 100px">
         <div class="container">
 
@@ -151,7 +166,8 @@
                                     <!-- Image -->
                                     <div class="sbox-10-img">
                                         <div class="hover-overlay">
-                                            <img class="img-fluid" src="{{asset('img_product/'.$item->image)}}" alt="service-image" />
+                                            <img class="img-fluid" src="{{ asset('img_product/' . $item->image) }}"
+                                                alt="service-image" />
                                         </div>
                                     </div>
 
@@ -159,10 +175,10 @@
                                     <div class="sbox-18-txt">
 
                                         <!-- Title -->
-                                        <h5 class="h5-sm txt-color-01">{{$item->name}}</h5>
+                                        <h5 class="h5-sm txt-color-01">{{ $item->name }}</h5>
 
                                         <!-- Text -->
-                                        <p class="p-md txt-color-05">{!!$item->deskripsi!!}</p>
+                                        <p class="p-md txt-color-05">{!! $item->deskripsi !!}</p>
 
                                         <!-- Rating -->
                                         {{-- <div class="txt-block-rating">
@@ -177,9 +193,11 @@
                                         </div> --}}
 
                                         <!-- Button -->
-                                        <a href="{{$item->button}}" target="_blank" class="btn p-sm btn-tra-01 color-02-hover mt-20">BELI SEKARANG</a>
+                                        <a href="{{ $item->button }}" target="_blank"
+                                            class="btn p-sm btn-tra-01 color-02-hover mt-20">BELI SEKARANG</a>
                                         @foreach ($item->linkbutton as $val)
-                                        <a href="{{$val->link}}" target="_blank" class="btn p-sm btn-tra-01 color-02-hover mt-20">{{$val->name}}</a>
+                                            <a href="{{ $val->link }}" target="_blank"
+                                                class="btn p-sm btn-tra-01 color-02-hover mt-20">{{ $val->name }}</a>
                                         @endforeach
 
                                     </div>

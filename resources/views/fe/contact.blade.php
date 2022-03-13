@@ -1,5 +1,5 @@
 @extends('layouts.new_fe.master')
-@section('logo')
+{{-- @section('logo')
     @if ($profile !== null)
         <div class="wsmobileheader clearfix">
             <span class="smllogo"><img src="{{ asset('img_profile/' . $profile->image_header) }}" width="170"
@@ -10,16 +10,16 @@
 @endsection
 
 @section('logo2')
-    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
-                width="170" height="50" alt="header-logo"></a>
+    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
+                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50" alt="header-logo"></a>
     </div>
-    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
-                width="170" height="50" alt="header-logo"></a>
+    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
+                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50" alt="header-logo"></a>
     </div>
-@endsection
+@endsection --}}
 @section('menu')
     <!-- HEADER
-               ============================================= -->
+                       ============================================= -->
     <header id="header" class="header white-menu navbar-dark">
         <div class="header-wrapper">
 
@@ -30,6 +30,13 @@
                         alt="mobile-logo" /></span>
                 <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
             </div> --}}
+            @if ($profile !== null)
+                <div class="wsmobileheader clearfix">
+                    <span class="smllogo"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
+                            width="170" height="50" alt="mobile-logo" /></span>
+                    <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+                </div>
+            @endif
 
             <!-- NAVIGATION MENU -->
             <div class="wsmainfull menu clearfix">
@@ -45,6 +52,14 @@
                                 src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
                                 alt="header-logo"></a>
                     </div> --}}
+                    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
+                                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50"
+                                alt="header-logo"></a>
+                    </div>
+                    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
+                                src="{{ asset('img_profile/' . $profile->image_header) }}" width="170" height="50"
+                                alt="header-logo"></a>
+                    </div>
 
                     <!-- MAIN MENU -->
                     <nav class="wsmenu clearfix">
@@ -72,14 +87,15 @@
 
 
                             <!-- SIMPLE NAVIGATION LINK -->
-                            <li class="nl-simple" aria-haspopup="true"><a href="{{ route('fe.contact') }}">Contacts</a>
+                            <li class="nl-simple" aria-haspopup="true"><a
+                                    href="{{ route('fe.contact') }}">Contacts</a>
                             </li>
 
                             @auth
                                 <li class="nl-simple" aria-haspopup="true">
                                     <a class="" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                             document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -138,8 +154,8 @@
                         {{-- <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8393924898796!2d144.9536363151022!3d-37.817230742014345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4e793770d3%3A0x9e44d6ad0d76ba7c!2zMTIxIEtpbmcgU3QsIE1lbGJvdXJuZSBWSUMgMzAwMCwg0JDQstGB0YLRgNCw0LvQuNGP!5e0!3m2!1sru!2sua!4v1469002590349"
                             width="600" height="450"></iframe> --}}
-                            {{-- <iframe src="{{$data->map}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}}
-                            {!!$contact->map!!}
+                        {{-- <iframe src="{{$data->map}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}}
+                        {!! $contact->map !!}
 
                     </div>
                 </div>
@@ -181,23 +197,23 @@
                             <!-- Form Input -->
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                <input type="email" name="email" class="form-control email" placeholder="Email Address*" required>
+                                    <input type="email" name="email" class="form-control email" placeholder="Email Address*"
+                                        required>
                                 </div>
                             </div>
 
                             <!-- Form Input -->
                             <div class="col-lg-6">
                                 <div class="form-group">
-                                <input type="number" name="telp" class="form-control"
-                                    placeholder="08xxxxxxxxxx" required>
+                                    <input type="number" name="telp" class="form-control" placeholder="08xxxxxxxxxx"
+                                        required>
                                 </div>
                             </div>
 
                             <!-- Form Textarea -->
                             <div class="col-lg-12">
                                 <div class="form-group">
-                                <textarea name="pesantext" class="form-control message" rows="6"
-                                    placeholder="Your Message ..." required></textarea>
+                                    <textarea name="pesantext" class="form-control message" rows="6" placeholder="Your Message ..." required></textarea>
                                 </div>
                             </div>
 
@@ -219,28 +235,30 @@
 
                         <!-- Title -->
                         <h4 class="h4-xs txt-color-01">Contact Details</h4>
-                        
+
                         <div class="cbox-1 mt-25 mb-25">
                             <h5 class="h5-xs txt-color-01">Our Location</h5>
-                            <p class="txt-color-05">{!!$contact->alamat!!}</p>
+                            <p class="txt-color-05">{!! $contact->alamat !!}</p>
                         </div>
 
                         <!-- PHONES -->
                         <div class="cbox-1 mb-25">
                             <h5 class="h5-xs txt-color-01">Contact Info</h5>
-                            <p class="txt-color-05"><span>Phone :</span> {{$contact->telp}}</p>
+                            <p class="txt-color-05"><span>Phone :</span> {{ $contact->telp }}</p>
                             <p class="txt-color-05"><span>Email :</span> <a
-                                    href="mailto:{{$contact->email}}">{{$contact->email}}</a> <- Click </p>
+                                    href="mailto:{{ $contact->email }}">{{ $contact->email }}</a>
+                                <- Click </p>
 
                         </div>
                         <div class="cbox-1">
                             <h5 class="h5-xs txt-color-01">Hari Operasional</h5>
-                            <p class="txt-color-05"><span></span> {{$contact->haribuka}}</p>
+                            <p class="txt-color-05"><span></span> {{ $contact->haribuka }}</p>
                         </div>
                         <!-- WORKING HOURS -->
                         <div class="cbox-1">
                             <h5 class="h5-xs txt-color-01">Jam Operasional</h5>
-                            <p class="txt-color-05"><span></span> {{$contact->jambuka.' - '.$contact->jamtutup}}</p>
+                            <p class="txt-color-05"><span></span> {{ $contact->jambuka . ' - ' . $contact->jamtutup }}
+                            </p>
                         </div>
 
                     </div>
