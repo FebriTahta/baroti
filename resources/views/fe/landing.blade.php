@@ -1,24 +1,22 @@
 @extends('layouts.new_fe.master')
 
 @section('logo')
-@if ($profile !== null)
-<div class="wsmobileheader clearfix">
-    <span class="smllogo"><img src="{{ asset('img_profile/'.$profile->image_header) }}" width="170" height="50"
-            alt="mobile-logo" /></span>
-    <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
-</div>
-@endif
+    @if ($profile !== null)
+        <div class="wsmobileheader clearfix">
+            <span class="smllogo"><img src="{{ asset('img_profile/' . $profile->image_header) }}" width="170"
+                    height="50" alt="mobile-logo" /></span>
+            <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+        </div>
+    @endif
 @endsection
 
 @section('logo2')
-<div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
-    src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
-    alt="header-logo"></a>
-</div>
-<div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
-    src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
-    alt="header-logo"></a>
-</div>
+    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img src="{{ asset('images/baroti_black.png') }}"
+                width="170" height="50" alt="header-logo"></a>
+    </div>
+    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img src="{{ asset('images/baroti_black.png') }}"
+                width="170" height="50" alt="header-logo"></a>
+    </div>
 @endsection
 
 
@@ -29,10 +27,10 @@
 
             <!-- MOBILE HEADER -->
 
- 
+
             {{-- @yield('logo') --}}
-           
-            
+
+
 
 
             <!-- NAVIGATION MENU -->
@@ -79,7 +77,7 @@
                                 <li class="nl-simple" aria-haspopup="true">
                                     <a class="" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -105,19 +103,19 @@
 @endsection
 
 @section('newfe_content')
-<div id="loader-wrapper">
-    <div id="loading">
-        <div class="cssload-loader">
-            <div class="fancy-spinner">
-                <div class="ring"></div>
-                <div class="ring"></div>
-                <div class="dot"></div>
+    <div id="loader-wrapper">
+        <div id="loading">
+            <div class="cssload-loader">
+                <div class="fancy-spinner">
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="dot"></div>
+                </div>
             </div>
         </div>
     </div>
-</div>
     <!-- HERO-7
-                           ============================================= -->
+                               ============================================= -->
     <section id="hero-7" class="hero-section division">
 
 
@@ -145,7 +143,7 @@
                                                 @if ($item->linkbutton->count() > 0)
                                                     @foreach ($item->linkbutton as $bt)
                                                         <!-- Button -->
-                                                        <a href="{{$bt->link}}" target="_blank"
+                                                        <a href="{{ $bt->link }}" target="_blank"
                                                             class="btn btn-md btn-color-02 tra-white-hover">{{ $bt->name }}</a>
                                                     @endforeach
                                                 @endif
@@ -199,7 +197,7 @@
 
 
     <!-- ABOUT-2
-                        ============================================= -->
+                            ============================================= -->
 
     @if ($about == null)
         {{-- <section id="about-2" class="bg-color-01 wide-70 about-section division">
@@ -265,7 +263,7 @@
                     <!-- IMAGE BLOCK -->
                     <div class="col-md-5 col-lg-6 m-top">
                         <div class="img-block right-column pc-15 mb-40">
-                            <img class="img-fluid" src="{{asset('img_about/'.$about->img)}}" alt="about-image">
+                            <img class="img-fluid" src="{{ asset('img_about/' . $about->img) }}" alt="about-image">
                         </div>
                     </div>
 
@@ -280,7 +278,7 @@
 
 
     <!-- SERVICES-13
-                        ============================================= -->
+                            ============================================= -->
     @if ($keunggulan !== null)
         <section id="services-13" class="bg-color-01 services-section division">
             <div class="container">
@@ -346,7 +344,7 @@
 
 
     <!-- SERVICES-1
-                        ============================================= -->
+                            ============================================= -->
     @if ($bahan->count() > 0)
         <section id="services-1" class="bg-color-01 wide-60 services-section division">
             <div class="container">
@@ -409,7 +407,7 @@
 
 
     <!-- BANNER-5
-                        ============================================= -->
+                            ============================================= -->
     @if ($ajakan !== null)
         <section id="banner-5" class="bg-fixed bg-image banner-section division">
             <div class="container">
@@ -421,17 +419,18 @@
                         <div class="banner-5-txt text-center">
 
                             <!-- Title -->
-                            <h2 class="h2-xl txt-color-05">{{$ajakan->judul}}</h2>
-                            <h3 class="h3-xs txt-color-01">{{$ajakan->heading}}</h3>
+                            <h2 class="h2-xl txt-color-05">{{ $ajakan->judul }}</h2>
+                            <h3 class="h3-xs txt-color-01">{{ $ajakan->heading }}</h3>
 
                             <!-- Text -->
                             <p class="p-md txt-color-05">
-                                {{$ajakan->deskripsi}}
+                                {{ $ajakan->deskripsi }}
                             </p>
 
                             {{-- @if ($ajakan->linkbutton->count() > 0) --}}
                             @foreach ($ajakan->linkbutton as $item)
-                            <a href="{{$item->link}}" target="_blank" class="btn btn-md btn-color-02 color-01-hover">{{$item->name}}</a>
+                                <a href="{{ $item->link }}" target="_blank"
+                                    class="btn btn-md btn-color-02 color-01-hover">{{ $item->name }}</a>
                             @endforeach
                             {{-- @foreach ($ajakan->linkbutton as $item)
                                 {{$item}}
@@ -451,7 +450,7 @@
 
 
     <!-- TESTIMONIALS-1
-                        ============================================= -->
+                            ============================================= -->
     <section id="reviews-1" class="bg-color-02 wide-100 reviews-section division">
         <div class="container">
 
@@ -478,36 +477,35 @@
             </div>
 
             @if ($testi->count() < 3)
-            {{-- <div class="col-md-12" style="text-align: center">
+                {{-- <div class="col-md-12" style="text-align: center">
                 <h5 style="color: red"> (minimal 3)</h5>
             </div> --}}
-            
             @endif
             <!-- TESTIMONIALS CONTENT -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme reviews-wrapper">
                         @foreach ($testi as $item)
-                        <div class="review-1">
+                            <div class="review-1">
 
-                            <!-- Testimonial Author Avatar -->
-                            <div class="testimonial-avatar">
-                                <img src="{{asset('img_testi/'.$item->img)}}" alt="testimonial-avatar">
+                                <!-- Testimonial Author Avatar -->
+                                <div class="testimonial-avatar">
+                                    <img src="{{ asset('img_testi/' . $item->img) }}" alt="testimonial-avatar">
+                                </div>
+
+                                <!-- Testimonial Author -->
+                                <div class="author-data txt-color-01">
+                                    <h6 class="h6-sm">{{ $item->name }}</h6>
+                                    {{-- <p>Designer</p> --}}
+                                </div>
+
+                                <!-- Testimonial Text -->
+                                <div class="review-1-txt txt-color-05">
+                                    <p>{{ $item->deskripsi }}
+                                    </p>
+                                </div>
+
                             </div>
-
-                            <!-- Testimonial Author -->
-                            <div class="author-data txt-color-01">
-                                <h6 class="h6-sm">{{$item->name}}</h6>
-                                {{-- <p>Designer</p> --}}
-                            </div>
-
-                            <!-- Testimonial Text -->
-                            <div class="review-1-txt txt-color-05">
-                                <p>{{$item->deskripsi}}
-                                </p>
-                            </div>
-
-                        </div>
                         @endforeach
                     </div>
                 </div>

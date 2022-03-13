@@ -159,7 +159,7 @@
             @endsection --}}
             @yield('logo')
             @yield('logo2')
-        @endif
+        {{-- @endif --}}
 
 
         @yield('menu')
