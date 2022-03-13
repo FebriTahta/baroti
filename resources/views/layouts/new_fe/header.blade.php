@@ -141,7 +141,7 @@
                 </div>
             @endsection --}}
         @else
-            @section('logo')
+            {{-- @section('logo')
                 <div class="wsmobileheader clearfix">
                     <span class="smllogo"><img src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
                             alt="mobile-logo" /></span>
@@ -156,7 +156,7 @@
                 <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
                             src="{{ asset('images/baroti_white.png') }}" width="170" height="50" alt="header-logo"></a>
                 </div>
-            @endsection
+            @endsection --}}
         @endif
 
 
