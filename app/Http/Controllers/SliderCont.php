@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Slider;
+use App\Models\Linkbutton;
 use DataTables;
 use Validator;
 use File;
@@ -27,7 +28,8 @@ class SliderCont extends Controller
             ->make(true);
         }
 
-        return view('be.slider');
+        $linkbutton = Linkbutton::all();
+        return view('be.slider',compact('linkbutton'));
     }
 
     public function be_slider_post(Request $request)
@@ -55,8 +57,20 @@ class SliderCont extends Controller
                 ],
                 [
                     'img_slider'     => $filename,
+                    'judul'          => $request->judul,
+                    'deskripsi'          => $request->deskripsi,
                 ]
             );
+
+            if ($request->linkbutton_id !== null) {
+                # code...
+                $ya;
+                foreach ($request->linkbutton_id as $key => $value) {
+                    # code...
+                    $ya[] = $value;
+                }
+                $data->linkbutton()->sync($ya);
+            }
         
             return response()->json(
                 [

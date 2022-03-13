@@ -4,10 +4,135 @@
     <div class="page">
 
         <div class="container-fluid">
+            <div class="row">
+                <div class="card">
+                    @if ($data !== null)
+                        <form id="formadd" method="POST">@csrf
+                            <div class="body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Thumbnail Image : 150 x 150 (px) (size kecil < 200kb)</label>
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" name="thumbnail_home"
+                                                            onchange="previewImage(event)" id="thumbnail_home" required>
+                                                        <label class="custom-file-label" for="thumbnail_home">Choose
+                                                            Image</label>
+                                                    </div>
+                                                    <div class="img-preview" style="margin-top: 10px">
+                                                        <img src="{{ asset('img_thumbnail/'.$data->thumbnail_home) }}" id="preview"
+                                                            width="150" alt="">
+                                                    </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Image Header : 283 x 84 (size < 2mb)</label>
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" name="image_header"
+                                                            onchange="previewImage2(event)" id="image_header">
+                                                        <label class="custom-file-label" for="image_header">Choose
+                                                            Image</label>
+                                                    </div>
+                                                    <div class="img-preview" style="margin-top: 10px">
+                                                        <img src="{{ asset('img_profile/'.$data->image_header) }}" id="preview2"
+                                                            width="283" alt="">
+                                                    </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="submit" id="btnadd" class="btn btn-info form-control" value="SUBMIT!"
+                                            style="color: white">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    @else
+                        <form id="formadd" method="POST">@csrf
+                            <div class="body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Thumbnail Image : 150 x 150 (px) (size kecil < 200kb)</label>
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" name="thumbnail_home"
+                                                            onchange="previewImage(event)" id="thumbnail_home" required>
+                                                        <label class="custom-file-label" for="thumbnail_home">Choose
+                                                            Image</label>
+                                                    </div>
+                                                    <div class="img-preview" style="margin-top: 10px">
+                                                        <img src="{{ asset('assets/images/user.png') }}" id="preview"
+                                                            width="150" alt="">
+                                                    </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Image Header : 283 x 84 (size < 2mb)</label>
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" name="image_header"
+                                                            onchange="previewImage2(event)" id="image_header">
+                                                        <label class="custom-file-label" for="image_header">Choose
+                                                            Image</label>
+                                                    </div>
+                                                    <div class="img-preview" style="margin-top: 10px">
+                                                        <img src="{{ asset('images/logo.png') }}" id="preview2"
+                                                            width="283" alt="">
+                                                    </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <input type="submit" id="btnadd" class="btn btn-info form-control" value="SUBMIT!"
+                                            style="color: white">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    @endif
+                </div>
+                <div class="card col-md-4">
+                    <div class="body">
+                        <div class="row">
+                            <div class="col-md 12">
+                                <form id="formuser" method="POST">@csrf
+                                    <div class="body">
+                                        <div class="form-group">
+                                            <input type="hidden" value="{{ auth()->user()->id }}">
+                                            <small class="text-muted">Username: </small>
+                                            <input type="text" class="form-control" name="name"
+                                                value="{{ auth()->user()->name }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <small class="text-muted">Password: </small>
+                                            <input type="text" class="form-control" name="pass"
+                                                value="{{ auth()->user()->pass }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <small class="text-muted">Email: </small>
+                                            <input type="email" class="form-control" name="email"
+                                                value="{{ auth()->user()->email }}">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit" id="btnuser" class="btn btn-danger" value="UPDATE!">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-md-8">
+
+                </div>
+            </div>
+        </div>
+        {{-- <div class="container-fluid">
             <div class="row clearfix">
+
                 <div class="col-xl-12">
                     <div id="errList" class="text-uppercase"></div>
                 </div>
+
                 <div class="col-lg-4 col-md-12">
                     <div class="card text-center profile-header" style="border-radius: 20px">
                         <div class="body">
@@ -33,7 +158,7 @@
                                         data-nama_web="{{ $data->nama_web }}" data-facebook="{{ $data->facebook }}"
                                         data-twitter="{{ $data->twitter }}" data-instagram="{{ $data->instagram }}"
                                         data-thumbnail_home="{{ asset('img_thumbnail/' . $data->thumbnail_home) }}"
-                                        data-telp="{{$data->telp}}" data-alamat="{{$data->alamat}}"
+                                        data-telp="{{ $data->telp }}" data-alamat="{{ $data->alamat }}"
                                         data-image_header="{{ asset('img_profile/' . $data->image_header) }}"
                                         data-toggle="modal" data-target="#modalprofile">UPDATE</button>
                                 @else
@@ -44,35 +169,7 @@
                         </div>
                     </div>
 
-                    <div class="card" style="border-radius: 20px">
-                        <div class="header margin-bottom">
-                            <h5>AUTHENTICATION</h5>
-                        </div>
-                        <hr>
-                        <form id="formuser" method="POST">@csrf
-                            <div class="body">
-                                <div class="form-group">
-                                    <input type="hidden" value="{{ auth()->user()->id }}">
-                                    <small class="text-muted">Username: </small>
-                                    <input type="text" class="form-control" name="name"
-                                        value="{{ auth()->user()->name }}">
-                                </div>
-                                <div class="form-group">
-                                    <small class="text-muted">Password: </small>
-                                    <input type="text" class="form-control" name="pass"
-                                        value="{{ auth()->user()->pass }}">
-                                </div>
-                                <div class="form-group">
-                                    <small class="text-muted">Email: </small>
-                                    <input type="email" class="form-control" name="email"
-                                        value="{{ auth()->user()->email }}">
-                                </div>
-                                <div class="form-group">
-                                    <input type="submit" id="btnuser" class="btn btn-danger" value="UPDATE!">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                    
                 </div>
                 <div class="col-lg-8 col-md-12">
                     @if ($data == null)
@@ -138,11 +235,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     {{-- modal --}}
-    <div class="modal modal-fluid fade" id="modaladdprofile" tabindex="-1" role="dialog" aria-labelledby="modal_1"
+    {{-- <div class="modal modal-fluid fade" id="modaladdprofile" tabindex="-1" role="dialog" aria-labelledby="modal_1"
         aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -235,7 +332,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="modal modal-fluid fade" id="modalprofile" tabindex="-1" role="dialog" aria-labelledby="modal_1"
         aria-hidden="true">
@@ -294,7 +391,7 @@
                                             <label>Thumbnail Image : 150 x 150 (px) (size kecil < 200kb)</label>
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" name="thumbnail_home"
-                                                            onchange="previewImage3(event)" id="thumbnail_home" >
+                                                            onchange="previewImage3(event)" id="thumbnail_home">
                                                         <label class="custom-file-label" for="thumbnail_home">Choose
                                                             Image</label>
                                                     </div>
@@ -391,9 +488,9 @@
             modal.find('.modal-body #instagram').val(instagram);
             modal.find('.modal-body #telp').val(telp);
             modal.find('.modal-body #alamat').val(alamat);
-            const thumb = document.getElementById("preview3"); 
+            const thumb = document.getElementById("preview3");
             thumb.src = thumbnail_home;
-            const header = document.getElementById("preview4"); 
+            const header = document.getElementById("preview4");
             header.src = image_header;
         })
 

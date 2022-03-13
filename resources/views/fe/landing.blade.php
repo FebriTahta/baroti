@@ -26,10 +26,12 @@
 
                     @yield('logo2')
                     <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
-                                src="{{ asset('images/baroti_black.png') }}" width="170" height="50" alt="header-logo"></a>
+                                src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
+                                alt="header-logo"></a>
                     </div>
                     <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
-                                src="{{ asset('images/baroti_black.png') }}" width="170" height="50" alt="header-logo"></a>
+                                src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
+                                alt="header-logo"></a>
                     </div>
 
                     <!-- MAIN MENU -->
@@ -58,8 +60,27 @@
 
 
                             <!-- SIMPLE NAVIGATION LINK -->
-                            <li class="nl-simple" aria-haspopup="true"><a href="{{ route('fe.contact') }}">Contacts</a>
+                            <li class="nl-simple" aria-haspopup="true"><a
+                                    href="{{ route('fe.contact') }}">Contacts</a>
                             </li>
+
+                            @auth
+                                <li class="nl-simple" aria-haspopup="true">
+                                    <a class="" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                             document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            @else
+                                <li class="nl-simple" aria-haspopup="true"><a href="{{ route('login') }}">Login</a>
+                                </li>
+                            @endauth
 
                         </ul>
                     </nav> <!-- END MAIN MENU -->
@@ -73,44 +94,89 @@
 @endsection
 
 @section('newfe_content')
+<div id="loader-wrapper">
+    <div id="loading">
+        <div class="cssload-loader">
+            <div class="fancy-spinner">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- HERO-7
-       ============================================= -->
+                           ============================================= -->
     <section id="hero-7" class="hero-section division">
 
 
         <!-- SLIDER -->
         <div class="slider">
             <ul class="slides">
+                @if ($slider->count() > 0)
+                    @foreach ($slider as $item)
+                        <li id="slide-1">
+
+                            <!-- Background Image -->
+                            <img src="{{ asset('img_slider/' . $item->img_slider) }}" alt="slide-background">
+
+                            <!-- Image Caption -->
+                            <div class="caption d-flex align-items-center center-align">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="caption-txt white-color">
+
+                                                <!-- Title -->
+                                                <h3 class="h3-md">{{ $item->judul }}</h3>
+                                                <h2>{{ $item->deskripsi }}</h2>
+
+                                                @if ($item->linkbutton->count() > 0)
+                                                    @foreach ($item->linkbutton as $bt)
+                                                        <!-- Button -->
+                                                        <a href="{{$bt->link}}" target="_blank"
+                                                            class="btn btn-md btn-color-02 tra-white-hover">{{ $bt->name }}</a>
+                                                    @endforeach
+                                                @endif
 
 
-                <!-- SLIDE #1 -->
-                <li id="slide-1">
+                                            </div>
+                                        </div>
+                                    </div> <!-- End row -->
+                                </div> <!-- End container -->
+                            </div> <!-- End Image Caption -->
 
-                    <!-- Background Image -->
-                    <img src="images/slider/slide-11.jpg" alt="slide-background">
+                        </li> <!-- END SLIDE #1 -->
+                    @endforeach
+                @else
+                    <li id="slide-1">
 
-                    <!-- Image Caption -->
-                    <div class="caption d-flex align-items-center center-align">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="caption-txt white-color">
+                        <!-- Background Image -->
+                        <img src="images/slider/slide-11.jpg" alt="slide-background">
 
-                                        <!-- Title -->
-                                        <h3 class="h3-md">Welcome to BaRoTi</h3>
-                                        <h2>Bantal Aroma Terapi</h2>
+                        <!-- Image Caption -->
+                        <div class="caption d-flex align-items-center center-align">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="caption-txt white-color">
 
-                                        <!-- Button -->
-                                        <a href="booking.html" class="btn btn-md btn-color-02 tra-white-hover">Purchase
-                                            Now</a>
+                                            <!-- Title -->
+                                            <h3 class="h3-md">Welcome to BaRoTi</h3>
+                                            <h2>Bantal Aroma Terapi</h2>
 
+                                            <!-- Button -->
+                                            <a href="booking.html" class="btn btn-md btn-color-02 tra-white-hover">Purchase
+                                                Now</a>
+
+                                        </div>
                                     </div>
-                                </div>
-                            </div> <!-- End row -->
-                        </div> <!-- End container -->
-                    </div> <!-- End Image Caption -->
+                                </div> <!-- End row -->
+                            </div> <!-- End container -->
+                        </div> <!-- End Image Caption -->
 
-                </li> <!-- END SLIDE #1 -->
+                    </li> <!-- END SLIDE #1 -->
+                @endif
 
             </ul>
         </div> <!-- END SLIDER -->
@@ -122,246 +188,256 @@
 
 
     <!-- ABOUT-2
-    ============================================= -->
-    <section id="about-2" class="bg-color-01 wide-70 about-section division">
-        <div class="container">
-            <div class="row d-flex align-items-center m-row">
+                        ============================================= -->
+
+    @if ($about == null)
+        <section id="about-2" class="bg-color-01 wide-70 about-section division">
+            <div class="container">
+                <div class="row d-flex align-items-center m-row">
 
 
-                <!-- TEXT BLOCK -->
-                <div class="col-md-7 col-lg-6 m-bottom">
-                    <div class="txt-block left-column pc-15 mb-40">
+                    <!-- TEXT BLOCK -->
+                    <div class="col-md-7 col-lg-6 m-bottom">
+                        <div class="txt-block left-column pc-15 mb-40">
 
-                        <!-- Section ID -->
-                        <h2 class="section-id txt-color-02">About Us</h2>
+                            <!-- Section ID -->
+                            <h2 class="section-id txt-color-02">About Us</h2>
 
-                        <!-- Title -->
-                        <h3 class="h3-md txt-color-01">Apa Itu BaRoTi</h3>
+                            <!-- Title -->
+                            <h3 class="h3-md txt-color-01">Apa Itu BaRoTi</h3>
 
-                        <!-- Text -->
-                        <p class="txt-color-05">BaRoTi adalah Bantal Aroma Terapy yang menggunakan bahan-bahan
-                            alami sebagai base pembuatannya. Sabut kelapa yang dipakai di proses sedemikian rupa
-                            agar nyaman untuk di pakai serta memiliki aroma yang menenangkan.
-                        </p>
+                            <!-- Text -->
+                            <p class="txt-color-05">BaRoTi adalah Bantal Aroma Terapy yang menggunakan bahan-bahan
+                                alami sebagai base pembuatannya. Sabut kelapa yang dipakai di proses sedemikian rupa
+                                agar nyaman untuk di pakai serta memiliki aroma yang menenangkan.
+                            </p>
 
+                        </div>
+                    </div> <!-- END TEXT BLOCK -->
+
+
+                    <!-- IMAGE BLOCK -->
+                    <div class="col-md-5 col-lg-6 m-top">
+                        <div class="img-block right-column pc-15 mb-40">
+                            <img class="img-fluid" src="images/image-02.png" alt="about-image">
+                        </div>
                     </div>
-                </div> <!-- END TEXT BLOCK -->
 
 
-                <!-- IMAGE BLOCK -->
-                <div class="col-md-5 col-lg-6 m-top">
-                    <div class="img-block right-column pc-15 mb-40">
-                        <img class="img-fluid" src="images/image-02.png" alt="about-image">
+                </div> <!-- End row -->
+            </div> <!-- End container -->
+        </section> <!-- END ABOUT-2 -->
+    @else
+        <section id="about-2" class="bg-color-01 wide-70 about-section division">
+            <div class="container">
+                <div class="row d-flex align-items-center m-row">
+
+
+                    <!-- TEXT BLOCK -->
+                    <div class="col-md-7 col-lg-6 m-bottom">
+                        <div class="txt-block left-column pc-15 mb-40">
+
+                            <!-- Section ID -->
+                            <h2 class="section-id txt-color-02">About Us</h2>
+
+                            <!-- Title -->
+                            <h3 class="h3-md txt-color-01">{{ $about->judul }}</h3>
+
+                            <!-- Text -->
+                            <p class="txt-color-05">{{ $about->deskirpsi }}
+                            </p>
+
+                        </div>
+                    </div> <!-- END TEXT BLOCK -->
+
+
+                    <!-- IMAGE BLOCK -->
+                    <div class="col-md-5 col-lg-6 m-top">
+                        <div class="img-block right-column pc-15 mb-40">
+                            <img class="img-fluid" src="images/image-02.png" alt="about-image">
+                        </div>
                     </div>
-                </div>
 
 
-            </div> <!-- End row -->
-        </div> <!-- End container -->
-    </section> <!-- END ABOUT-2 -->
+                </div> <!-- End row -->
+            </div> <!-- End container -->
+        </section> <!-- END ABOUT-2 -->
+    @endif
+
 
 
 
 
     <!-- SERVICES-13
-    ============================================= -->
-    <section id="services-13" class="bg-color-01 services-section division">
-        <div class="container">
+                        ============================================= -->
+    @if ($keunggulan !== null)
+        <section id="services-13" class="bg-color-01 services-section division">
+            <div class="container">
 
 
-            <!-- SECTION TITLE -->
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="section-title mb-60 text-center">
+                <!-- SECTION TITLE -->
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="section-title mb-60 text-center">
 
-                        <!-- Transparent Header -->
-                        <h2 class="tra-header txt-color-02">Keunggulan</h2>
+                            <!-- Transparent Header -->
+                            <h2 class="tra-header txt-color-02">Keunggulan</h2>
 
-                        <!-- Title 	-->
-                        <h3 class="h3-xl txt-color-01">Kenapa harus BaRoTi</h3>
+                            <!-- Title 	-->
+                            <h3 class="h3-xl txt-color-01">Kenapa harus BaRoTi</h3>
 
-                        <!-- Text -->
-                        {{-- <p class="p-lg txt-color-05">Aliquam a augue suscipit, luctus neque purus ipsum neque undo
-                        dolor
-                        primis libero tempus, blandit a cursus varius at magna tempor
-                    </p> --}}
+                            <!-- Text -->
+                            {{-- <p class="p-lg txt-color-05">Aliquam a augue suscipit, luctus neque purus ipsum neque undo
+                                            dolor
+                                            primis libero tempus, blandit a cursus varius at magna tempor
+                                        </p> --}}
 
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <!-- SERVICES-13 WRAPPER -->
-            <div class="sbox-13-wrapper">
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-10">
-                        <div id="s13-3" class="sbox-13 bg-fixed bg-color-02">
-                            <div class="sbox-13-txt">
+                <!-- SERVICES-13 WRAPPER -->
+                <div class="sbox-13-wrapper">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div id="s13-3" class="sbox-13 bg-fixed bg-color-02">
+                                <div class="sbox-13-txt">
 
-                                <!-- Title -->
-                                <h5 class="h5-xl txt-color-01">Karena</h5>
+                                    <!-- Title -->
+                                    <h5 class="h5-xl txt-color-01">Karena</h5>
 
-                                <!-- Text -->
-                                <p class="txt-color-05">Bantal ini menggunakan Lavender Essential Oil yang sudah
-                                    dibuktikan keampuhannya sebagai salah satu penenang bagi orang insomnia. Aroma
-                                    Lavender sudah teruji secara ilmiah dapat menurunkan tingkat stress seseorang.
-                                    Bantal ini sangat cocok
-                                </p>
+                                    <!-- Text -->
+                                    <p class="txt-color-05">Bantal ini menggunakan Lavender Essential Oil yang sudah
+                                        dibuktikan keampuhannya sebagai salah satu penenang bagi orang insomnia. Aroma
+                                        Lavender sudah teruji secara ilmiah dapat menurunkan tingkat stress seseorang.
+                                        Bantal ini sangat cocok
+                                    </p>
 
-                                <!-- Button -->
-                                <a href="#" class="btn btn-color-02 tra-02-hover">Purchase Now</a>
+                                    <!-- Button -->
+                                    {{-- <a href="#" class="btn btn-color-02 tra-02-hover">Purchase Now</a> --}}
 
+                                </div>
                             </div>
-                        </div>
-                    </div> <!-- END SERVICE BOX #3 -->
-                    <div class="col-md-1"></div>
+                        </div> <!-- END SERVICE BOX #3 -->
+                        <div class="col-md-1"></div>
 
-                </div> <!-- End row -->
-            </div> <!-- END SERVICES-13 WRAPPER -->
+                    </div> <!-- End row -->
+                </div> <!-- END SERVICES-13 WRAPPER -->
 
 
-        </div> <!-- End container -->
-    </section> <!-- END SERVICES-13 -->
+            </div> <!-- End container -->
+        </section> <!-- END SERVICES-13 -->
+    @endif
 
 
 
 
     <!-- SERVICES-1
-    ============================================= -->
-    <section id="services-1" class="bg-color-01 wide-60 services-section division">
-        <div class="container">
+                        ============================================= -->
+    @if ($bahan->count() > 0)
+        <section id="services-1" class="bg-color-01 wide-60 services-section division">
+            <div class="container">
 
 
-            <!-- SECTION TITLE -->
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="section-title mb-60 text-center">
+                <!-- SECTION TITLE -->
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="section-title mb-60 text-center">
 
-                        <!-- Transparent Header -->
-                        <h2 class="tra-header txt-color-02">Bahan Dasar</h2>
+                            <!-- Transparent Header -->
+                            <h2 class="tra-header txt-color-02">Bahan Dasar</h2>
 
-                        <!-- Title 	-->
-                        <h3 class="h3-xl txt-color-01">Aroma Terapi</h3>
+                            <!-- Title 	-->
+                            <h3 class="h3-xl txt-color-01">Aroma Terapi</h3>
 
-                        <!-- Text -->
-                        {{-- <p class="p-lg txt-color-05">Aliquam a augue suscipit, luctus neque purus ipsum neque undo
-                        dolor
-                        primis libero tempus, blandit a cursus varius at magna tempor
-                    </p> --}}
+                            <!-- Text -->
+                            {{-- <p class="p-lg txt-color-05">Aliquam a augue suscipit, luctus neque purus ipsum neque undo
+                                        dolor
+                                        primis libero tempus, blandit a cursus varius at magna tempor
+                                    </p> --}}
 
+                        </div>
                     </div>
                 </div>
-            </div>
 
 
-            <!-- SERVICES-1 WRAPPER -->
-            <div class="sbox-1-wrapper">
-                <div class="row">
+                <!-- SERVICES-1 WRAPPER -->
+                <div class="sbox-1-wrapper">
+                    <div class="row">
+
+                        @foreach ($bahan as $item)
+                            <!-- SERVICE BOX #1 -->
+                            <div class="col-md-4">
+                                <div class="sbox-1">
+
+                                    <!-- Image -->
+                                    <img class="img-fluid" src="images/serv-01.png" alt="service-image" />
+
+                                    <!-- Title -->
+                                    <h5 class="h5-md txt-color-01">{{ $item->name }}</h5>
+
+                                    <!-- Text -->
+                                    <p class="txt-color-05">{{ $item->deskripsi }}
+                                    </p>
+
+                                </div>
+                            </div>
+                        @endforeach
+
+                    </div> <!-- End row -->
+                </div> <!-- END SERVICES-1 WRAPPER -->
 
 
-                    <!-- SERVICE BOX #1 -->
-                    <div class="col-md-4">
-                        <div class="sbox-1">
-
-                            <!-- Image -->
-                            <img class="img-fluid" src="images/serv-01.png" alt="service-image" />
-
-                            <!-- Title -->
-                            <h5 class="h5-md txt-color-01">Lavender Essential Oil</h5>
-
-                            <!-- Text -->
-                            <p class="txt-color-05">Bunga Lavender yang telah di ekstrak secara alami menjadi essential
-                                oil
-                            </p>
-
-                        </div>
-                    </div>
-
-
-                    <!-- SERVICE BOX #2 -->
-                    <div class="col-md-4">
-                        <div class="sbox-1">
-
-                            <!-- Image -->
-                            <img class="img-fluid" src="images/serv-02.png" alt="service-image" />
-
-                            <!-- Title -->
-                            <h5 class="h5-md txt-color-01">Kayu Manis</h5>
-
-                            <!-- Text -->
-                            <p class="txt-color-05">Ekstrak bubuk kayu manis
-                            </p>
-
-                        </div>
-                    </div>
-
-
-                    <!-- SERVICE BOX #3 -->
-                    <div class="col-md-4">
-                        <div class="sbox-1">
-
-                            <!-- Image -->
-                            <img class="img-fluid" src="images/serv-03.png" alt="service-image" />
-
-                            <!-- Title -->
-                            <h5 class="h5-md txt-color-01">Serabut Kelapa</h5>
-
-                            <!-- Text -->
-                            <p class="txt-color-05">Kelapa pilihan yang diambil bagian serabut dan telah melalui proses
-                                double drying
-                            </p>
-
-                        </div>
-                    </div>
-
-
-                </div> <!-- End row -->
-            </div> <!-- END SERVICES-1 WRAPPER -->
-
-
-        </div> <!-- End container -->
-    </section> <!-- END SERVICES-1 -->
+            </div> <!-- End container -->
+        </section> <!-- END SERVICES-1 -->
+    @endif
 
 
 
 
     <!-- BANNER-5
-    ============================================= -->
-    <section id="banner-5" class="bg-fixed bg-image banner-section division">
-        <div class="container">
-            <div class="row d-flex align-items-center">
+                        ============================================= -->
+    @if ($ajakan !== null)
+        <section id="banner-5" class="bg-fixed bg-image banner-section division">
+            <div class="container">
+                <div class="row d-flex align-items-center">
 
 
-                <!-- TEXT BLOCK -->
-                <div class="col-lg-6 offset-lg-3">
-                    <div class="banner-5-txt text-center">
+                    <!-- TEXT BLOCK -->
+                    <div class="col-lg-6 offset-lg-3">
+                        <div class="banner-5-txt text-center">
 
-                        <!-- Title -->
-                        <h2 class="h2-xl txt-color-05">Dapatkan</h2>
-                        <h3 class="h3-xs txt-color-01">Bantal Aromaterapi Mu Segera!</h3>
+                            <!-- Title -->
+                            <h2 class="h2-xl txt-color-05">{{$ajakan->judul}}</h2>
+                            <h3 class="h3-xs txt-color-01">{{$ajakan->heading}}</h3>
 
-                        <!-- Text -->
-                        <p class="p-md txt-color-05">
-                            Perbaiki Kualitas Tidur untuk Menuju Sehat
-                        </p>
+                            <!-- Text -->
+                            <p class="p-md txt-color-05">
+                                {{$ajakan->deskripsi}}
+                            </p>
 
-                        <!-- Button -->
-                        <a href="booking.html" class="btn btn-md btn-color-02 color-01-hover">Tokopedia</a>
-                        <a href="booking.html" class="btn btn-md btn-color-02 color-01-hover">Shopee</a>
+                            @if ($ajakan->linkbutton->count() > 0)
+                            @foreach ($ajakan->linkbutton as $item)
+                            <a href="{{$item->link}}" target="_blank" class="btn btn-md btn-color-02 color-01-hover">{{$item->name}}</a>
+                            @endforeach
+                            @endif
 
-                    </div>
-                </div> <!-- END TEXT BLOCK -->
+                        </div>
+                    </div> <!-- END TEXT BLOCK -->
 
-            </div> <!-- End row -->
-        </div> <!-- End container -->
-    </section> <!-- END BANNER-5 -->
+                </div> <!-- End row -->
+            </div> <!-- End container -->
+        </section> <!-- END BANNER-5 -->
+    @endif
+
 
 
 
 
     <!-- TESTIMONIALS-1
-    ============================================= -->
+                        ============================================= -->
     <section id="reviews-1" class="bg-color-02 wide-100 reviews-section division">
         <div class="container">
 
@@ -387,188 +463,38 @@
                 </div>
             </div>
 
-
+            @if ($testi->count() < 3)
+            {{-- <div class="col-md-12" style="text-align: center">
+                <h5 style="color: red"> (minimal 3)</h5>
+            </div> --}}
+            
+            @endif
             <!-- TESTIMONIALS CONTENT -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="owl-carousel owl-theme reviews-wrapper">
-
-
-                        <!-- TESTIMONIAL #1 -->
+                        @foreach ($testi as $item)
                         <div class="review-1">
 
                             <!-- Testimonial Author Avatar -->
                             <div class="testimonial-avatar">
-                                <img src="images/review-author-1.jpg" alt="testimonial-avatar">
+                                <img src="{{asset('img_testi/'.$item->img)}}" alt="testimonial-avatar">
                             </div>
 
                             <!-- Testimonial Author -->
                             <div class="author-data txt-color-01">
-                                <h6 class="h6-sm">Kelly Walke</h6>
-                                <p>Housewife</p>
+                                <h6 class="h6-sm">{{$item->name}}</h6>
+                                {{-- <p>Designer</p> --}}
                             </div>
 
                             <!-- Testimonial Text -->
                             <div class="review-1-txt txt-color-05">
-                                <p>Sagittis congue etiam sapien sem accumsan suscipit egestas lobortis magna,
-                                    porttitor
-                                    sodales vitae aenean mauris tempor risus lectus
+                                <p>{{$item->deskripsi}}
                                 </p>
                             </div>
 
                         </div>
-
-
-                        <!-- TESTIMONIAL #2 -->
-                        <div class="review-1">
-
-                            <!-- Testimonial Author Avatar -->
-                            <div class="testimonial-avatar">
-                                <img src="images/review-author-2.jpg" alt="testimonial-avatar">
-                            </div>
-
-                            <!-- Testimonial Author -->
-                            <div class="author-data txt-color-01">
-                                <h6 class="h6-sm">Linda Ferell</h6>
-                                <p>Designer</p>
-                            </div>
-
-                            <!-- Testimonial Text -->
-                            <div class="review-1-txt txt-color-05">
-                                <p>Sapien sem accumsan vitae purus diam integer congue magna undo. Magna, sodales
-                                    vitae
-                                    aenean mauris tempor risus lectus aenean magna ipsum vitae purus vitae
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <!-- TESTIMONIAL #3 -->
-                        <div class="review-1">
-
-                            <!-- Testimonial Author Avatar -->
-                            <div class="testimonial-avatar">
-                                <img src="images/review-author-3.jpg" alt="testimonial-avatar">
-                            </div>
-
-                            <!-- Testimonial Author -->
-                            <div class="author-data txt-color-01">
-                                <h6 class="h6-sm">Evelyn Martinez</h6>
-                                <p>Journalist</p>
-                            </div>
-
-                            <!-- Testimonial Text -->
-                            <div class="review-1-txt txt-color-05">
-                                <p>Etiam sapien sem accumsan sagittis congue. Suscipit egestas at lobortis magna,
-                                    porttitor
-                                    sodales vitae aenean mauris tempor risus lectus aenean diam aenean mauris
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <!-- TESTIMONIAL #4 -->
-                        <div class="review-1">
-
-                            <!-- Testimonial Author Avatar -->
-                            <div class="testimonial-avatar">
-                                <img src="images/review-author-4.jpg" alt="testimonial-avatar">
-                            </div>
-
-                            <!-- Testimonial Author -->
-                            <div class="author-data txt-color-01">
-                                <h6 class="h6-sm">Laura Merino</h6>
-                                <p>Fashion Designer</p>
-                            </div>
-
-                            <!-- Testimonial Text -->
-                            <div class="review-1-txt txt-color-05">
-                                <p>Egestas egestas magna ipsum vitae purus efficitur ipsum primis in cubilia laoreet
-                                    augue
-                                    congue. An egestas lobortis magna, sodales vitae
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <!-- TESTIMONIAL #5 -->
-                        <div class="review-1">
-
-                            <!-- Testimonial Author Avatar -->
-                            <div class="testimonial-avatar">
-                                <img src="images/review-author-5.jpg" alt="testimonial-avatar">
-                            </div>
-
-                            <!-- Testimonial Author -->
-                            <div class="author-data txt-color-01">
-                                <h6 class="h6-sm">Elizabeth Ross</h6>
-                                <p>Biologist</p>
-                            </div>
-
-                            <!-- Testimonial Text -->
-                            <div class="review-1-txt txt-color-05">
-                                <p>An orci nullam tempor sapien, eget orci gravida donec enim ipsum porta justo
-                                    integer and
-                                    odio velna auctor. Egestas magna ipsum vitae purus ipsum primis in laoreet augue
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <!-- TESTIMONIAL #6 -->
-                        <div class="review-1">
-
-                            <!-- Testimonial Author Avatar -->
-                            <div class="testimonial-avatar">
-                                <img src="images/review-author-6.jpg" alt="testimonial-avatar">
-                            </div>
-
-                            <!-- Testimonial Author -->
-                            <div class="author-data txt-color-01">
-                                <h6 class="h6-sm">Carmen M. Garcia</h6>
-                                <p>Graphic Designer</p>
-                            </div>
-
-                            <!-- Testimonial Text -->
-                            <div class="review-1-txt txt-color-05">
-                                <p>Mauris donec ociis et magnis sapien an etiam sapien sem sagittis congue augue. An
-                                    orci nullam
-                                    tempor sapien, eget orci gravida donec porta
-                                </p>
-                            </div>
-
-                        </div>
-
-
-                        <!-- TESTIMONIAL #7 -->
-                        <div class="review-1">
-
-                            <!-- Testimonial Author Avatar -->
-                            <div class="testimonial-avatar">
-                                <img src="images/review-author-7.jpg" alt="testimonial-avatar">
-                            </div>
-
-                            <!-- Testimonial Author -->
-                            <div class="author-data txt-color-01">
-                                <h6 class="h6-sm">Penelopa M.</h6>
-                                <p>Manager</p>
-                            </div>
-
-                            <!-- Testimonial Text -->
-                            <div class="review-1-txt txt-color-05">
-                                <p>At sagittis congue augue egestas egestas magna ipsum vitae purus ipsum primis in
-                                    cubilia
-                                    laoreet augue diam ociis nullam tempor
-                                </p>
-                            </div>
-
-                        </div>
-
-
+                        @endforeach
                     </div>
                 </div>
             </div> <!-- END TESTIMONIALS CONTENT -->

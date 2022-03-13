@@ -1,7 +1,12 @@
 <footer id="footer-4" class="bg-color-01 footer division">
     <div class="container">
 
-
+        <?php
+            $profile = App\Models\Profile::first();
+            $about   = App\Models\About::first();   
+            $contact   = App\Models\Contact::first();
+            $button = App\Models\Linkbutton::all();
+        ?>
         <!-- FOOTER CONTENT -->
         <div class="row">
 
@@ -31,16 +36,16 @@
 
                     <!-- Address -->
                     <p class="txt-color-05">Alamat :</p> 
-                    <p class="txt-color-05">Detail Alamat</p>
+                    <p class="txt-color-05">{!!$contact->alamat!!}</p>
 
                     <!-- Footer Contacts -->
                     <div class="txt-color-05 mt-15">
 
                         <!-- Email -->
-                        <p class="foo-email">E: <a href="mailto:yourdomain@mail.com">hello@emailmu.com</a></p>
+                        <p class="foo-email">E: <a href="mailto:{{$contact->email}}">{{$contact->email}}</a> <- click</p>
 
                         <!-- Phone -->
-                        <p>Phone : 081329145554</p>
+                        <p>Phone : {{$contact->telp}}</p>
 
                     </div>
 
@@ -57,11 +62,10 @@
 
                     <!-- Footer Links -->
                     <ul class="txt-color-05 clearfix">
-                        <li><p><a href="#">Home</a></p></li>	
-                        <li><p><a href="#">About Us</a></p></li>	
-                        <li><p><a href="#">Product</a></p></li>
-                        <li><p><a href="#">Gallery</a></p></li>
-                        <li><p><a href="#">Contact</a></p></li>	
+                        <li><p><a href="/">Home</a></p></li>	
+                        <li><p><a href="{{route('fe.about')}}">About Us</a></p></li>	
+                        <li><p><a href="{{route('fe.product')}}">Product</a></p></li>
+                        <li><p><a href="{{route('fe.contact')}}">Contact</a></p></li>	
                     </ul>
 
                 </div>
@@ -73,16 +77,25 @@
                 <div class="footer-img mb-40">
 
                     <!-- Title -->
-                    <h6 class="h6-lg txt-color-01">Social Media Gallery</h6>
+                    <h6 class="h6-lg txt-color-01">Media & Product Link</h6>
 
                     <!-- Instagram Images -->
+                    <ul class="txt-color-05 clearfix">
+                        @foreach ($button  as $button)
+                        <li><p><a href="{{$button->link}}">{{$button->name}}</a></p></li>	
+                        @endforeach
+                    </ul>
                     <ul class="text-center clearfix">
-                        <li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-01.jpg" alt="insta-img"></a></li>
+                        
+                        
+                        
+                        
+                        {{-- <li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-01.jpg" alt="insta-img"></a></li>
                         <li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-02.jpg" alt="insta-img"></a></li>
                         <li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-03.jpg" alt="insta-img"></a></li>
                         <li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-04.jpg" alt="insta-img"></a></li>
                         <li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-05.jpg" alt="insta-img"></a></li>
-                        <li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-06.jpg" alt="insta-img"></a></li>	
+                        <li><a href="#" target="_blank"><img class="insta-img" src="images/instagram/img-06.jpg" alt="insta-img"></a></li>	 --}}
                     </ul>
                                             
                 </div>
@@ -106,11 +119,12 @@
 
 
                 <!-- BOTTOM FOOTER LINKS -->
+                <?php $btn = App\Models\Linkbutton::all();?>
                 <div class="col-lg-6">
                     <ul class="bottom-footer-list text-right clearfix">
-                        <li><p class="first-list-link"><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></p></li>	
-                        <li><p><a href="#"><i class="fab fa-twitter"></i> Twitter</a></p></li>
-                        <li><p class="last-li"><a href="#"><i class="fab fa-instagram"></i> Instagram</a></p></li>
+                        @foreach ($btn as $item)
+                        <li><p class="first-list-link"><a href="{{$item->link}}"><i class="fab fa-facebook-f"></i> {{$item->name}}</a></p></li>	
+                        @endforeach
                     </ul>
                 </div>
 

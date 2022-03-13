@@ -16,7 +16,8 @@ use Illuminate\Http\Request;
 class ProductCont extends Controller
 {
     public function product(){
-        return view('fe.product');
+        $product = Product::all();
+        return view('fe.product',compact('product'));
     }
 
     public function index(Request $request)
@@ -49,28 +50,28 @@ class ProductCont extends Controller
                         $url=asset("img_product/".$data->image); 
                         return '<img src='.$url.' border="0" width="100px" class="img-rounded" align="center" />'; 
                     })
-                    ->addColumn('kategori', function($data){
-                        return $data->kategori->name;
-                    })
-                    ->addColumn('tag', function($data){
-                        $result[]='';
-                        foreach ($data->tag as $key => $value) {
-                            # code...
-                            $result[] = $value->name;
-                        }
-                        return implode('</br>',$result);
-                    })
-                    ->addColumn('desc', function($data){
-                        if (strlen($data->deskripsi) > 15) {
-                            # code...
-                            $desc = substr($data->deskripsi,0,15).' [...]';
-                            return $desc;
-                        }else {
-                            # code...
-                            $desc = $data->deskripsi;
-                            return $desc;
-                        }
-                    })
+                    // ->addColumn('kategori', function($data){
+                    //     return $data->kategori->name;
+                    // })
+                    // ->addColumn('tag', function($data){
+                    //     $result[]='';
+                    //     foreach ($data->tag as $key => $value) {
+                    //         # code...
+                    //         $result[] = $value->name;
+                    //     }
+                    //     return implode('</br>',$result);
+                    // })
+                    // ->addColumn('desc', function($data){
+                    //     if (strlen($data->deskripsi) > 15) {
+                    //         # code...
+                    //         $desc = substr($data->deskripsi,0,15).' [...]';
+                    //         return $desc;
+                    //     }else {
+                    //         # code...
+                    //         $desc = $data->deskripsi;
+                    //         return $desc;
+                    //     }
+                    // })
                     ->addColumn('opsi', function($data){
                         $actionBtn = '<a href="/admin-product-edit-page/'.$data->slug.'" type="button" class="btn btn-sm btn-primary" ><i class="fa fa-pencil"></i></a>';
                         $actionBtn .= ' <a href="#" type="button" data-p_id="'.$data->id.'" data-p_image="'.$data->image.'" data-toggle="modal" data-target="#modaldel" class="btn btn-sm btn-danger" ><i class="fa fa-trash"></i></a>';
@@ -89,10 +90,11 @@ class ProductCont extends Controller
         $validator = Validator::make($request->all(), [
             'p_name'        => 'required',
             'p_deskripsi'   => 'required',
+            'button'   => 'required',
             'p_image'       => 'nullable|mimes:jpeg,jpg,png,gif',
-            'p_harga'       => 'nullable',
-            'kategori_id'   => 'nullable|max:50',
-            'tag'           => 'required'
+            // 'p_harga'       => 'nullable',
+            // 'kategori_id'   => 'nullable|max:50',
+            // 'tag'           => 'required'
         ]);
 
         if ($validator->fails()) {
@@ -118,17 +120,23 @@ class ProductCont extends Controller
                         'slug'      => Str::slug($request->p_name),
                         'deskripsi' => $request->p_deskripsi,
                         'image'     => $filename,
-                        'harga'     => $request->p_harga,
-                        'kategori_id' => $request->kategori_id,
-                        'link_tokped' => $request->link_tokped,
-                        'link_shopee' => $request->link_shopee
+                        'button'    => $request->button,
+                        // 'harga'     => $request->p_harga,
+                        // 'kategori_id' => $request->kategori_id,
+                        // 'link_tokped' => $request->link_tokped,
+                        // 'link_shopee' => $request->link_shopee
 
                     ]
                 );
 
-                foreach ($request->tag as $key => $value) {
+                if ($request->linkbutton_id !== null) {
                     # code...
-                    $data->tag()->syncWithoutDetaching($value);
+                    $ya;
+                    foreach ($request->linkbutton_id as $key => $value) {
+                        # code...
+                        $ya[] = $value;
+                    }
+                    $data->linkbutton()->sync($ya);
                 }
             }else {
                 # code...
@@ -140,17 +148,24 @@ class ProductCont extends Controller
                         'name'      => $request->p_name,
                         'slug'      => Str::slug($request->p_name),
                         'deskripsi' => $request->p_deskripsi,
-                        'harga'     => $request->p_harga,
-                        'kategori_id' => $request->kategori_id,
-                        'link_tokped' => $request->link_tokped,
-                        'link_shopee' => $request->link_shopee
+                        'button'    => $request->button,
+                        // 'harga'     => $request->p_harga,
+                        // 'kategori_id' => $request->kategori_id,
+                        // 'link_tokped' => $request->link_tokped,
+                        // 'link_shopee' => $request->link_shopee
                     ]
                 );
 
-                foreach ($request->tag as $key => $value) {
+                if ($request->linkbutton_id !== null) {
                     # code...
-                    $data->tag()->syncWithoutDetaching($value);
+                    $ya;
+                    foreach ($request->linkbutton_id as $key => $value) {
+                        # code...
+                        $ya[] = $value;
+                    }
+                    $data->linkbutton()->sync($ya);
                 }
+               
             }
         
             return response()->json(

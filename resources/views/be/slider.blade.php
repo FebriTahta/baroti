@@ -1,5 +1,7 @@
 @extends('layouts.be.master')
-
+@section('head')
+    <link rel="stylesheet" href="{{ asset('assets/vendor/select2/select2.css') }}" />
+@endsection
 @section('content')
     <div class="page">
         <div class="container-fluid">
@@ -21,6 +23,24 @@
                                     <div class="img-preview" style="margin-top: 10px">
                                         <img src="{{asset('images/flexslider/shop1.jpg')}}" id="preview" width="100%" alt="">
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="">JUDUL</label>
+                                    <input type="text" name="judul" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">TEXT</label>
+                                    <input type="text" name="deskripsi" class="form-control">
+                                </div>
+                                <div class="form-group">
+                                    <label for="">LINK BUTTON</label>
+                                    <select class="form-control show-tick ms select2" name="linkbutton_id[]" multiple
+                                        data-placeholder="Select" required>
+                                        @foreach ($linkbutton as $item)
+                                            <option value="{{ $item->id }}"
+                                                >{{ $item->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <input type="submit" id="btnadd" class="btn btn-info form-control" value="SUBMIT!"

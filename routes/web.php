@@ -7,8 +7,17 @@ use App\Http\Controllers\UserCont;
 use App\Http\Controllers\ContactCont;
 use App\Http\Controllers\SliderCont;
 use App\Http\Controllers\LandingCont;
+use App\Http\Controllers\TeamCont;
+use App\Http\Controllers\BidangCont;
+use App\Http\Controllers\ButtonCont;
+use App\Http\Controllers\BahanCont;
+use App\Http\Controllers\TestiCont;
+use App\Http\Controllers\AjakanCont;
+use App\Http\Controllers\PesanCont;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\KeunggulanCont;
+
 
 use App\Http\Controllers\AboutController;
 
@@ -23,10 +32,11 @@ use App\Http\Controllers\AboutController;
 |
 */
 
-Route::get('/', function () {
-    return view('fe.landing');
-    // return view('fe.about');
-});
+// Route::get('/', function () {
+//     return view('fe.landing');
+//     // return view('fe.about');
+// });
+Route::get('/',[LandingCont::class,'landing']);
 Auth::routes();
 
 Route::get('/about-us',[AboutController::class,'index'])->name('fe.about');
@@ -66,6 +76,63 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     //BE
     //USER
     Route::post('/admin-user-update',[UserCont::class,'be_user_update'])->name('be.user_update');
+    //BE
+    //TEAM
+    Route::get('/admin-our-team',[TeamCont::class,'be_team'])->name('be.team');
+    Route::post('/admin-our-team-post',[TeamCont::class,'be_team_post'])->name('be.team_post');
+    Route::post('/admin-our-team-dell',[TeamCont::class,'be_team_dell'])->name('be.team_dell');
+    //BE
+    //ABOUT
+    Route::get('/admin-about-us',[AboutController::class,'be_about'])->name('be.about');
+    Route::post('/admin-about-us-post',[AboutController::class,'be_about_post'])->name('be.about_post');
+    //BE
+    //BIDANG
+    Route::get('/admin-bidang',[BidangCont::class,'be_bidang'])->name('be.bidang');
+    Route::post('/admin-bidang-post',[BidangCont::class,'be_bidang_post'])->name('be.bidang_post');
+    //BE
+    //KEUNGGULAN
+    Route::get('/admin-keunggulan',[KeunggulanCont::class,'be_keunggulan'])->name('be.keunggulan');
+    Route::post('/admin-keunggulan-post',[KeunggulanCont::class,'be_keunggulan_post'])->name('be.keunggulan_post');
+    //BE
+    //AJAKAN
+    Route::get('/admin-ajakan',[AjakanCont::class,'be_ajakan'])->name('be.ajakan');
+    Route::post('/admin-ajakan-post',[AjakanCont::class,'be_ajakan_post'])->name('be.ajakan_post');
+    Route::post('/admin-linkbutton-post',[AjakanCont::class,'be_link_button_post'])->name('be.link_button_post');
+    Route::post('/admin-linkbutton-dell',[AjakanCont::class,'be_link_button_dell'])->name('be.link_button_dell');
+    //BE
+    //CONTACT
+    Route::get('/admin-contact',[ContactCont::class,'be_contact'])->name('be.contact');
+    Route::post('/admin-contact-post',[ContactCont::class,'be_contact_post'])->name('be.contact_post');
+    //BE
+    //BUTTON
+    Route::get('/admin-daftar-link-button',[ButtonCont::class,'be_button'])->name('be.button');
+    //BE
+    //BAHAN
+    Route::get('/admin-bahan-product',[BahanCont::class,'be_bahan'])->name('be.bahan');
+    Route::post('/admin-bahan-product-post',[BahanCont::class,'be_bahan_post'])->name('be.bahan_post');
+    Route::post('/admin-bahan-product-dell',[BahanCont::class,'be_bahan_dell'])->name('be.bahan_dell');
+    //BE
+    //TESTI
+    Route::get('/admin-testimoni',[TestiCont::class,'be_testi'])->name('be.testi');
+    Route::post('/admin-testimoni-post',[TestiCont::class,'be_testi_post'])->name('be.testi_post');
+    Route::post('/admin-testimoni-dell',[TestiCont::class,'be_testi_dell'])->name('be.testi_dell');
+    //BE
+    //PESAN
+    Route::post('/submit-pesan',[PesanCont::class,'submit_pesan'])->name('fe.submit_pesan');
+    Route::get('/admin-pesan',[PesanCont::class,'be_pesan'])->name('be.pesan');
+    Route::post('/admin-pesan-dell',[PesanCont::class,'be_pesan_dell'])->name('be.pesan_dell');
+    //BE
+    //TES
+    Route::post('/tes',[AjakanCont::class,'tes']);
+
+
+
+
+
+
+
+
+
     //BE
     //HOME
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

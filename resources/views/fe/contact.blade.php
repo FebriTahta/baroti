@@ -58,6 +58,24 @@
                             <li class="nl-simple" aria-haspopup="true"><a href="{{ route('fe.contact') }}">Contacts</a>
                             </li>
 
+                            @auth
+                                <li class="nl-simple" aria-haspopup="true">
+                                    <a class="" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                             document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            @else
+                                <li class="nl-simple" aria-haspopup="true"><a href="{{ route('login') }}">Login</a>
+                                </li>
+                            @endauth
+
                         </ul>
                     </nav> <!-- END MAIN MENU -->
 
@@ -94,16 +112,17 @@
                 </div>
             </div>
 
-
             <!-- GOOGLE MAP -->
             <div class="row">
                 <div class="col-md-12">
                     <div class="google-map mb-80">
 
                         <!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! -->
-                        <iframe
+                        {{-- <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8393924898796!2d144.9536363151022!3d-37.817230742014345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4e793770d3%3A0x9e44d6ad0d76ba7c!2zMTIxIEtpbmcgU3QsIE1lbGJvdXJuZSBWSUMgMzAwMCwg0JDQstGB0YLRgNCw0LvQuNGP!5e0!3m2!1sru!2sua!4v1469002590349"
-                            width="600" height="450"></iframe>
+                            width="600" height="450"></iframe> --}}
+                            {{-- <iframe src="{{$data->map}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}}
+                            {!!$contact->map!!}
 
                     </div>
                 </div>
@@ -112,7 +131,15 @@
 
             <div class="row">
 
-
+                <div class="col-md-12">
+                    @if (\Session::has('success'))
+                        <div class="alert alert-success">
+                            <ul>
+                                <li>{!! \Session::get('success') !!}</li>
+                            </ul>
+                        </div>
+                    @endif
+                </div>
                 <!-- CONTACT FORM -->
                 <div class="col-md-7 col-lg-8">
 
@@ -125,41 +152,44 @@
 
                     <!-- Form -->
                     <div class="form-holder">
-                        <form name="contactform" class="row contact-form">
+                        <form action="/submit-pesan" method="POST" class="row">@csrf
 
                             <!-- Form Input -->
-                            <div class="col-lg-6">
-                                <input type="text" name="name" class="form-control name" placeholder="Your Name*">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <input type="text" name="name" class="form-control name" placeholder="Your Name*">
+                                </div>
                             </div>
 
                             <!-- Form Input -->
                             <div class="col-lg-6">
-                                <input type="email" name="email" class="form-control email" placeholder="Email Address*">
+                                <div class="form-group">
+                                <input type="email" name="email" class="form-control email" placeholder="Email Address*" required>
+                                </div>
                             </div>
 
                             <!-- Form Input -->
-                            <div class="col-md-12">
-                                <input type="text" name="subject" class="form-control subject"
-                                    placeholder="What's this about?">
+                            <div class="col-lg-6">
+                                <div class="form-group">
+                                <input type="number" name="telp" class="form-control"
+                                    placeholder="08xxxxxxxxxx" required>
+                                </div>
                             </div>
 
                             <!-- Form Textarea -->
-                            <div class="col-md-12">
-                                <textarea name="message" class="form-control message" rows="6"
-                                    placeholder="Your Message ..."></textarea>
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                <textarea name="pesantext" class="form-control message" rows="6"
+                                    placeholder="Your Message ..." required></textarea>
+                                </div>
                             </div>
 
                             <!-- Form Button -->
                             <div class="col-md-12 mt-5 text-right">
-                                <button type="submit" class="btn btn-md btn-color-02 tra-02-hover submit">Send
-                                    Message</button>
+                                {{-- <button type="submit" class="btn btn-md btn-color-02 tra-02-hover submit">Send
+                                    Message</button> --}}
+                                <input type="submit" value="SUBMIT MESSAGE" class="btn btn-md btn-color-02 tra-02-hover">
                             </div>
-
-                            <!-- Form Message -->
-                            <div class="col-md-12 contact-form-msg text-center">
-                                <div class="sending-msg"><span class="loading"></span></div>
-                            </div>
-
                         </form>
 
                     </div>
@@ -172,31 +202,28 @@
 
                         <!-- Title -->
                         <h4 class="h4-xs txt-color-01">Contact Details</h4>
-                        <!-- Text -->
-                        <p class="txt-color-05">Detail
-                        </p>
-
-                        <!-- LOCATION -->
+                        
                         <div class="cbox-1 mt-25 mb-25">
                             <h5 class="h5-xs txt-color-01">Our Location</h5>
-                            <p class="txt-color-05">Detail Alamat,</p>
+                            <p class="txt-color-05">{!!$contact->alamat!!}</p>
                         </div>
 
                         <!-- PHONES -->
                         <div class="cbox-1 mb-25">
                             <h5 class="h5-xs txt-color-01">Contact Info</h5>
-                            <p class="txt-color-05"><span>Phone :</span> +12 3 3456 7890</p>
+                            <p class="txt-color-05"><span>Phone :</span> {{$contact->telp}}</p>
                             <p class="txt-color-05"><span>Email :</span> <a
-                                    href="mailto:yourdomain@mail.com">hello@yourdomain.com</a></p>
+                                    href="mailto:{{$contact->email}}">{{$contact->email}}</a> <- Click </p>
 
                         </div>
-
+                        <div class="cbox-1">
+                            <h5 class="h5-xs txt-color-01">Hari Operasional</h5>
+                            <p class="txt-color-05"><span></span> {{$contact->haribuka}}</p>
+                        </div>
                         <!-- WORKING HOURS -->
                         <div class="cbox-1">
-                            <h5 class="h5-xs txt-color-01">Working Hours</h5>
-                            <p class="txt-color-05"><span>Mon – Fri :</span> 9:00 AM - 7:00 PM</p>
-                            <p class="txt-color-05"><span>Saturday :</span> 9:00 AM - 6:00 PM</p>
-                            <p class="txt-color-05"><span>Sunday :</span> Closed</p>
+                            <h5 class="h5-xs txt-color-01">Jam Operasional</h5>
+                            <p class="txt-color-05"><span></span> {{$contact->jambuka.' - '.$contact->jamtutup}}</p>
                         </div>
 
                     </div>

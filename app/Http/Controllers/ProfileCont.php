@@ -19,12 +19,12 @@ class ProfileCont extends Controller
     public function be_profile_post(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nama_web'        => 'required',
-            'facebook'        => 'nullable',
-            'twitter'         => 'nullable',
-            'instagram'       => 'nullable',
-            'telp'            => 'required',
-            'alamat'          => 'required',
+            // 'nama_web'        => 'required',
+            // 'facebook'        => 'nullable',
+            // 'twitter'         => 'nullable',
+            // 'instagram'       => 'nullable',
+            // 'telp'            => 'required',
+            // 'alamat'          => 'required',
             'thumbnail_home'  => 'image|mimes:jpeg,jpg,png,gif|max:200',
             'image_header'    => 'image|mimes:jpeg,jpg,png,gif|max:2048'
         ]);
@@ -48,15 +48,15 @@ class ProfileCont extends Controller
 
                 $data   = Profile::updateOrCreate(
                     [
-                        'id' => $request->id
+                        'id' => 1
                     ],
                     [
-                        'nama_web'      => $request->nama_web,
-                        'facebook'      => $request->facebook,
-                        'twitter' => $request->twitter,
-                        'instagram'     => $request->instagram,
-                        'telp'     => $request->telp,
-                        'alamat' => $request->alamat,
+                        // 'nama_web'      => $request->nama_web,
+                        // 'facebook'      => $request->facebook,
+                        // 'twitter' => $request->twitter,
+                        // 'instagram'     => $request->instagram,
+                        // 'telp'     => $request->telp,
+                        // 'alamat' => $request->alamat,
                         'thumbnail_home' => $filename,
                         'image_header' => $filename2,
 
@@ -70,15 +70,15 @@ class ProfileCont extends Controller
 
                 $data   = Profile::updateOrCreate(
                     [
-                        'id' => $request->id
+                        'id' => 1
                     ],
                     [
-                        'nama_web'      => $request->nama_web,
-                        'facebook'      => $request->facebook,
-                        'twitter' => $request->twitter,
-                        'instagram'     => $request->instagram,
-                        'telp'     => $request->telp,
-                        'alamat' => $request->alamat,
+                        // 'nama_web'      => $request->nama_web,
+                        // 'facebook'      => $request->facebook,
+                        // 'twitter' => $request->twitter,
+                        // 'instagram'     => $request->instagram,
+                        // 'telp'     => $request->telp,
+                        // 'alamat' => $request->alamat,
                         'thumbnail_home' => $filename,
 
                     ]
@@ -90,35 +90,35 @@ class ProfileCont extends Controller
 
                 $data   = Profile::updateOrCreate(
                     [
-                        'id' => $request->id
+                        'id' => 1
                     ],
                     [
-                        'nama_web'      => $request->nama_web,
-                        'facebook'      => $request->facebook,
-                        'twitter' => $request->twitter,
-                        'instagram'     => $request->instagram,
-                        'telp'     => $request->telp,
-                        'alamat' => $request->alamat,
+                        // 'nama_web'      => $request->nama_web,
+                        // 'facebook'      => $request->facebook,
+                        // 'twitter' => $request->twitter,
+                        // 'instagram'     => $request->instagram,
+                        // 'telp'     => $request->telp,
+                        // 'alamat' => $request->alamat,
                         'image_header' => $filename2,
 
                     ]
                 );
             }else {
                 # code...
-                $data   = Profile::updateOrCreate(
-                    [
-                        'id' => $request->id
-                    ],
-                    [
-                        'nama_web'      => $request->nama_web,
-                        'facebook'      => $request->facebook,
-                        'twitter' => $request->twitter,
-                        'instagram'     => $request->instagram,
-                        'telp'     => $request->telp,
-                        'alamat' => $request->alamat,
+                // $data   = Profile::updateOrCreate(
+                //     [
+                //         'id' => $request->id
+                //     ],
+                //     [
+                //         'nama_web'      => $request->nama_web,
+                //         'facebook'      => $request->facebook,
+                //         'twitter' => $request->twitter,
+                //         'instagram'     => $request->instagram,
+                //         'telp'     => $request->telp,
+                //         'alamat' => $request->alamat,
 
-                    ]
-                );
+                //     ]
+                // );
             }
         
             return response()->json(

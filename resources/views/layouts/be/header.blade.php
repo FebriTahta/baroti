@@ -22,6 +22,8 @@
 
 <link rel="stylesheet" href="{{asset('assets/vendor/jquery-datatable/dataTables.bootstrap4.min.css')}}">
 
+@yield('head')
+
 <link rel="stylesheet" href="{{asset('assets/css/main.css')}}" type="text/css">
 </head>
 <body class="theme-indigo">
@@ -36,7 +38,7 @@
     <nav class="navbar custom-navbar navbar-expand-lg py-2">
         <div class="container-fluid px-0">
             <a href="javascript:void(0);" class="menu_toggle"><i class="fa fa-align-left"></i></a>
-            <a href="index.html" class="navbar-brand">
+            <a href="/" class="navbar-brand">
                 @if ($data != null)
                 {{-- <img src="{{asset('img_thumbnail/'.$data->thumbnail_home)}}" alt="BigBucket" /> --}}
                 <img src="{{asset('assets/images/brand/icon.svg')}}" alt="BigBucket" />
@@ -48,7 +50,7 @@
                 <ul class="navbar-nav mr-auto hidden-xs">
                     <li class="nav-item page-header">
                         <ul class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="index.html"><i class="fa fa-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i></a></li>
                             <li class="breadcrumb-item">READ</li>
                             <li class="breadcrumb-item active">Read Extra Documentation</li>
                         </ul>

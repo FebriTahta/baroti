@@ -9,6 +9,13 @@ class Slider extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'img_slider'
+        'img_slider',
+        'judul',
+        'deskripsi'
     ];
+
+    public function linkbutton()
+    {
+        return $this->belongsToMany(Linkbutton::class);
+    }
 }

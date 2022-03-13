@@ -117,17 +117,53 @@
                     </div>
                 </div>
                 <ul id="main-menu" class="metismenu">
-                    <li class="g_heading">Main</li>
+                    <li class="g_heading">Profile, About, Contact, Team, Dsb</li>
+                    <li class="active">
+                        <a href="javascript:void(0)" class="has-arrow" aria-expanded="true"><i class="ti-id-badge"></i><span>PROFILE</span></a>
+                        <ul>
+                            <li><a href="{{route('be.button')}}">Daftar Link Button</a></li>
+                            <li><a href="{{route('be.team')}}">Our Team</a></li>
+                            <li><a href="{{route('be.about')}}">About Us</a></li>
+                            <li><a href="{{route('be.bidang')}}">Bidang</a></li>
+                            <li><a href="{{route('be.keunggulan')}}">Keunggulan</a></li>
+                            <li><a href="{{route('be.ajakan')}}">Ajakan</a></li>
+                            <li><a href="{{route('be.contact')}}">Contact</a></li>
+                            <li><a href="{{route('be.profile')}}">User Auth & Logo</a></li>
+                            <li><a href="{{route('be.slider')}}">Slider</a></li>
+                        </ul>
+                    </li>
+                    <li class="g_heading">Product & Bahan</li>
+                    <li class="active">
+                        <a href="javascript:void(0)" class="has-arrow" aria-expanded="true"><i class="ti-pencil-alt"></i><span>Bahan & Product</span></a>
+                        <ul>
+                            <li><a href="{{route('be.bahan')}}">Bahan</a></li>
+                            <li><a href="{{route('be.product')}}">Product</a></li>
+                        </ul>
+                    </li>
+                    <li class="g_heading">Testimmonial</li>
+                    <li class="active">
+                        <a href="javascript:void(0)" class="has-arrow" aria-expanded="true"><i class="ti-id-badge"></i><span>Testimonial</span></a>
+                        <ul>
+                            <li><a href="{{route('be.testi')}}">Daftar Client</a></li>
+                        </ul>
+                    </li>
+                    <li class="g_heading">PESAN</li>
+                    <li class="active">
+                        <a href="javascript:void(0)" class="has-arrow" aria-expanded="true"><i class="ti-vector"></i><span>Pesan</span></a>
+                        <ul>
+                            <li><a href="{{route('be.pesan')}}">Daftar Pesan</a></li>
+                        </ul>
+                    </li>
+                    {{-- <li class="g_heading">Main</li>
                     <li><a href="{{route('be.product')}}"><i class="ti-pencil-alt"></i><span>PRODUCTS</span></a></li>
                     <li><a href="{{route('be.slider')}}"><i class="ti-vector"></i><span>SLIDER</span></a></li>
                     <li><a href="{{route('be.kategori')}}"><i class="fa fa-book"></i><span>KATEGORI</span></a></li>
                     <li><a href="{{route('be.tag')}}"><i class="fa fa-tags"></i><span>TAGS</span></a></li>
-                    
                     <li class="g_heading">Contact, Profile, About</li>
                     <li><a href="{{route('be.profile')}}"><i class="ti-id-badge"></i><span>MY PROFILE</span></a></li>
-                    
+                    <li><a href="{{route('be.team')}}"><i class="ti-id-badge"></i><span>OUR TEAM</span></a></li>
                     <li class="g_heading">Extra</li>
-                    <li><a href="docs/introduction.html"><i class="ti-file"></i><span>Documentation</span></a></li>
+                    <li><a href="docs/introduction.html"><i class="ti-file"></i><span>Documentation</span></a></li> --}}
                 </ul>
             </nav>
         </div>

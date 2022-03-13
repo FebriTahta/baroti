@@ -11,7 +11,7 @@
 <head>
 
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    {{-- <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="Jthemes" />
     <meta name="description" content="Bantal Aroma Terapi" />
     <meta name="keywords"
@@ -21,7 +21,19 @@
     <meta
       property="og:image"
       content="{{asset('images/baroti_thumbnail.png')}}"
-    />
+    /> --}}
+    <?php
+    $profile = App\Models\Profile::first();
+    $about = App\Models\About::first();
+    ?>
+    @if ($profile !== null && $about !== null)
+        <meta property="og:site_name" content="BaRoTi">
+        <meta property="og:title" content="Bantal Aroma Terapi" />
+        <meta property="og:description" content="{{ $about->deskripsi }}" />
+        <meta property="og:image" itemprop="image" content="{{ asset('img_thumbnail/' . $profile->img_thumbnail) }}">
+        <meta property="og:type" content="website" />
+        <meta property="og:updated_time" content="{{ $profile->created_at }}" />
+    @endif
 
     <!-- SITE TITLE -->
     <title>Ba Ro Ti</title>
@@ -44,7 +56,7 @@
     <link href="{{ 'css/bootstrap.min.css' }}" rel="stylesheet">
 
     <!-- FONT ICONS -->
-    <link href="https://use.fontawesome.com/releases/v5.11.0/css/all.css" rel="stylesheet" crossorigin="anonymous">
+    {{-- <link href="https://use.fontawesome.com/releases/v5.11.0/css/all.css" rel="stylesheet" crossorigin="anonymous"> --}}
     <link href="{{ asset('css/flaticon.css') }}" rel="stylesheet">
 
     <!-- PLUGINS STYLESHEET -->
@@ -78,7 +90,7 @@
 
     <!-- PRELOADER SPINNER
   ============================================= -->
-    <div id="loader-wrapper">
+    {{-- <div id="loader-wrapper">
         <div id="loading">
             <div class="cssload-loader">
                 <div class="fancy-spinner">
@@ -88,7 +100,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
 
@@ -97,21 +109,42 @@
   ============================================= -->
     <div id="page" class="page">
 
+        @if ($profile !== null)
+            @section('logo')
+                <div class="wsmobileheader clearfix">
+                    <span class="smllogo"><img src="{{ asset('img_thumbnail/'.$profile->img_thumbnail) }}" width="170" height="50"
+                            alt="mobile-logo" /></span>
+                    <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+                </div>
+            @endsection
 
-        @section('logo')
-            <div class="wsmobileheader clearfix">
-                <span class="smllogo"><img src="{{asset('images/baroti_black.png')}}" width="170" height="50"
-                        alt="mobile-logo" /></span>
-                <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
-            </div>
-        @endsection
+            @section('logo2')
+                <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
+                            src="{{ asset('img_thumbnail/'.$profile->img_thumbnail) }}" width="170" height="50" alt="header-logo"></a>
+                </div>
+                <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
+                            src="{{ asset('img_thumbnail/'.$profile->img_thumbnail) }}" width="170" height="50" alt="header-logo"></a>
+                </div>
+            @endsection
+        @else
+            @section('logo')
+                <div class="wsmobileheader clearfix">
+                    <span class="smllogo"><img src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
+                            alt="mobile-logo" /></span>
+                    <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
+                </div>
+            @endsection
 
-        @section('logo2')
-            <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img src="{{asset('images/baroti_black.png')}}" width="170"
-                        height="50" alt="header-logo"></a></div>
-            <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img src="{{asset('images/baroti_white.png')}}"
-                        width="170" height="50" alt="header-logo"></a></div>
-        @endsection
+            @section('logo2')
+                <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img
+                            src="{{ asset('images/baroti_black.png') }}" width="170" height="50" alt="header-logo"></a>
+                </div>
+                <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img
+                            src="{{ asset('images/baroti_white.png') }}" width="170" height="50" alt="header-logo"></a>
+                </div>
+            @endsection
+        @endif
+
 
         @yield('menu')
         <!-- HEADER

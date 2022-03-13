@@ -2,7 +2,7 @@
 
 @section('menu')
     <!-- HEADER
-               ============================================= -->
+                   ============================================= -->
     <header id="header" class="header white-menu navbar-dark">
         <div class="header-wrapper">
 
@@ -56,8 +56,27 @@
 
 
                             <!-- SIMPLE NAVIGATION LINK -->
-                            <li class="nl-simple" aria-haspopup="true"><a href="{{ route('fe.contact') }}">Contacts</a>
+                            <li class="nl-simple" aria-haspopup="true"><a
+                                    href="{{ route('fe.contact') }}">Contacts</a>
                             </li>
+
+                            @auth
+                                <li class="nl-simple" aria-haspopup="true">
+                                    <a class="" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault();
+                                                                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
+                                </li>
+                            @else
+                                <li class="nl-simple" aria-haspopup="true"><a href="{{ route('login') }}">Login</a>
+                                </li>
+                            @endauth
 
                         </ul>
                     </nav> <!-- END MAIN MENU -->
@@ -71,6 +90,17 @@
 @endsection
 
 @section('newfe_content')
+<div id="loader-wrapper">
+    <div id="loading">
+        <div class="cssload-loader">
+            <div class="fancy-spinner">
+                <div class="ring"></div>
+                <div class="ring"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+    </div>
+</div>
     <section id="services-18" class="bg-color-01 wide-60 services-section division" style="margin-top: 100px">
         <div class="container">
 
@@ -95,48 +125,93 @@
             <div class="sbox-18-wrapper">
                 <div class="row">
 
+                    @if ($product->count() / 2 !== 1)
+                        @foreach ($product as $item)
+                            <div class="col-md-3"></div>
+                            <div class="col-md-6 col-lg-6">
+                                <div class="sbox-18 bg-white text-center">
 
-                    <!-- SERVICE BOX #1 -->
-                    <div class="col-md-6 col-lg-12">
-                        <div class="sbox-18 bg-white text-center">
+                                    <!-- Image -->
+                                    <div class="sbox-10-img">
+                                        <div class="hover-overlay">
+                                            <img class="img-fluid" src="{{asset('img_product/'.$item->image)}}" alt="service-image" />
+                                        </div>
+                                    </div>
 
-                            <!-- Image -->
-                            <div class="sbox-10-img">
-                                <div class="hover-overlay">
-                                    <img class="img-fluid" src="images/serv-13.jpg" alt="service-image" />
+                                    <!-- Text -->
+                                    <div class="sbox-18-txt">
+
+                                        <!-- Title -->
+                                        <h5 class="h5-sm txt-color-01">{{$item->name}}</h5>
+
+                                        <!-- Text -->
+                                        <p class="p-md txt-color-05">{!!$item->deskripsi!!}</p>
+
+                                        <!-- Rating -->
+                                        {{-- <div class="txt-block-rating">
+                                            <div class="stars-rating">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star-half-alt"></i>
+                                                <span class="txt-color-01">$86.00</span>
+                                            </div>
+                                        </div> --}}
+
+                                        <!-- Button -->
+                                        <a href="{{$item->button}}" target="_blank" class="btn p-sm btn-tra-01 color-02-hover mt-20">BELI SEKARANG</a>
+                                        @foreach ($item->linkbutton as $val)
+                                        <a href="{{$val->link}}" target="_blank" class="btn p-sm btn-tra-01 color-02-hover mt-20">{{$val->name}}</a>
+                                        @endforeach
+
+                                    </div>
+
                                 </div>
                             </div>
+                            <div class="col-md-3"></div>
+                        @endforeach
+                    @else
+                        <div class="col-md-6 col-lg-6">
+                            <div class="sbox-18 bg-white text-center">
 
-                            <!-- Text -->
-                            <div class="sbox-18-txt">
-
-                                <!-- Title -->
-                                <h5 class="h5-sm txt-color-01">Lavender</h5>
-
-                                <!-- Text -->
-                                <p class="p-md txt-color-05">New</p>
-
-                                <!-- Rating -->
-                                <div class="txt-block-rating">
-                                    <div class="stars-rating">
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
-                                        <i class="fas fa-star-half-alt"></i>
-                                        <span class="txt-color-01">$86.00</span>
+                                <!-- Image -->
+                                <div class="sbox-10-img">
+                                    <div class="hover-overlay">
+                                        <img class="img-fluid" src="images/serv-13.jpg" alt="service-image" />
                                     </div>
                                 </div>
 
-                                <!-- Button -->
-                                <a href="#" class="btn p-sm btn-tra-01 color-02-hover mt-20">BELI SEKARANG</a>
+                                <!-- Text -->
+                                <div class="sbox-18-txt">
+
+                                    <!-- Title -->
+                                    <h5 class="h5-sm txt-color-01">Lavender</h5>
+
+                                    <!-- Text -->
+                                    <p class="p-md txt-color-05">New</p>
+
+                                    <!-- Rating -->
+                                    <div class="txt-block-rating">
+                                        <div class="stars-rating">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star-half-alt"></i>
+                                            <span class="txt-color-01">$86.00</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Button -->
+                                    <a href="#" class="btn p-sm btn-tra-01 color-02-hover mt-20">BELI SEKARANG</a>
+
+                                </div>
 
                             </div>
-
                         </div>
-                    </div>
-
-
+                    @endif
+                    <!-- SERVICE BOX #1 -->
                 </div> <!-- End row -->
             </div> <!-- END SERVICES-18 WRAPPER -->
 

@@ -29,7 +29,7 @@
                                                     name="p_name" required>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        {{-- <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Product Price</label>
                                                 <div class="row">
@@ -73,6 +73,31 @@
                                                     @endforeach
                                                 </select>
                                             </div>
+                                        </div> --}}
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Link Button Spesifik</label>
+                                                <input type="text" class="form-control" value="{{$data->button}}" name="button"
+                                                    placeholder="https://link" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Link Button Lain</label>
+                                                <?php $link = App\Models\Linkbutton::all();?>
+                                                <select name="linkbutton_id[]" class="form-control show-tick ms select2 text-capitalize"
+                                                    multiple data-placeholder="Select">
+                                                    @foreach ($link as $item)
+                                                        <option value="{{ $item->id }}"
+                                                            @foreach ($data->linkbutton as $val)
+                                                                @if ($val->id == $item->id)
+                                                                    selected
+                                                                @endif
+                                                            @endforeach
+                                                            >{{ $item->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                     
@@ -94,7 +119,7 @@
                                         <textarea name="p_deskripsi" class="summernote" id="p_deskripsi" cols="30"
                                             rows="10">{!! $data->deskripsi !!}</textarea>
                                     </div>
-                                    <div class="row">
+                                    {{-- <div class="row">
                                         <div class="col-xl-6">
                                             <div class="form-group">
                                                 <label >Link Tokped</label>
@@ -107,7 +132,7 @@
                                                 <input type="text" class="form-control" name="link_shopee" value="{{$data->link_shopee}}">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-xl-6">

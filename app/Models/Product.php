@@ -16,7 +16,8 @@ class Product extends Model
         'slug',
         'kategori_id',
         'link_tokped',
-        'link_shopee'
+        'link_shopee',
+        'button'
     ];
 
     public function link()
@@ -32,5 +33,10 @@ class Product extends Model
     public function tag()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function linkbutton()
+    {
+        return $this->belongsToMany(Linkbutton::class);
     }
 }
