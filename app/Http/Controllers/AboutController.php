@@ -5,6 +5,7 @@ use App\Models\About;
 use App\Models\Bidang;
 use App\Models\Team;
 use Validator;
+use App\Models\Profile;
 use Illuminate\Http\Request;
 
 class AboutController extends Controller
@@ -14,7 +15,8 @@ class AboutController extends Controller
         $about = About::first();
         $bidang= Bidang::first();
         $team = Team::all();
-        return view('fe.about',compact('about','bidang','team'));
+        $profile = Profile::first();
+        return view('fe.about',compact('profile','about','bidang','team'));
     }
 
     public function be_about(Request $request)

@@ -11,10 +11,10 @@
 @endsection
 
 @section('logo2')
-    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img src="{{ asset('images/baroti_black.png') }}"
+    <div class="desktoplogo"><a href="#hero-7" class="logo-black"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
                 width="170" height="50" alt="header-logo"></a>
     </div>
-    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img src="{{ asset('images/baroti_black.png') }}"
+    <div class="desktoplogo"><a href="#hero-7" class="logo-white"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
                 width="170" height="50" alt="header-logo"></a>
     </div>
 @endsection
