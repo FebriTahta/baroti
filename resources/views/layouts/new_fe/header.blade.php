@@ -34,11 +34,12 @@
         {{-- <title>Registrasi - Tilawati</title> --}}
         <meta property="og:title" content="BaRoTi"/>
         <meta property="og:description" content="{{$about->deskirpsi}}"/>
-        @if ($profile->img_thumbnail !== null)
-            <meta property="og:image" itemprop="image" content="https://baroti.uac-id.com/img_thumbnail/{{$profile->img_thumbnail}}">
+        <meta property="og:image" itemprop="image" content="https://baroti.uac-id.com/img_thumbnail/{{$profile->img_thumbnail}}">
+        {{-- @if ($profile->img_thumbnail !== null)
+            
         @else
-            {{-- <meta property="og:image" itemprop="image" content="{{ asset('images/tumbreg.jpeg') }}"> --}}
-        @endif
+            <meta property="og:image" itemprop="image" content="{{ asset('images/tumbreg.jpeg') }}">
+        @endif --}}
         <meta name="csrf-token" content="{{ csrf_token() }}">
         {{-- <meta property="og:site_name" content="BaRoTi">
         <meta property="og:title" content="Bantal Aroma Terapi" />

@@ -6,7 +6,7 @@
 <meta name="description" content="">
 <meta name="author" content="ThemeMakker">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-<title>:: BigBucket :: Form Summernote</title>
+<title>Admin Baroti</title>
 
 <link rel="stylesheet" href="{{asset('assets/vendor/themify-icons/themify-icons.css')}}">
 <link rel="stylesheet" href="{{asset('assets/vendor/fontawesome/css/font-awesome.min.css')}}">
