@@ -11,7 +11,7 @@ class Linkbutton extends Model
     protected $fillable = [
         'name',
         'link',        
-    ];
+    ]; 
 
     public function ajakan()
     {
