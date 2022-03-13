@@ -418,11 +418,11 @@
                                 {{$ajakan->deskripsi}}
                             </p>
 
-                            @if ($ajakan->linkbutton->count() > 0)
+                            {{-- @if ($ajakan->linkbutton->count() > 0) --}}
                             @foreach ($ajakan->linkbutton as $item)
                             <a href="{{$item->link}}" target="_blank" class="btn btn-md btn-color-02 color-01-hover">{{$item->name}}</a>
                             @endforeach
-                            @endif
+                            {{-- @endif --}}
 
                         </div>
                     </div> <!-- END TEXT BLOCK -->
