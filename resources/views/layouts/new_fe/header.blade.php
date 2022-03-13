@@ -11,6 +11,8 @@
 <head>
 
     <meta charset="utf-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     {{-- <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="author" content="Jthemes" />
     <meta name="description" content="Bantal Aroma Terapi" />
@@ -27,12 +29,23 @@
     $about = App\Models\About::first();
     ?>
     @if ($profile !== null && $about !== null)
-        <meta property="og:site_name" content="BaRoTi">
+        
+        <meta name="author" content="BaRoTi">
+        {{-- <title>Registrasi - Tilawati</title> --}}
+        <meta property="og:title" content="BaRoTi"/>
+        <meta property="og:description" content="{{$about->deskirpsi}}"/>
+        @if ($profile->img_thumbnail !== null)
+            <meta property="og:image" itemprop="image" content="https://baroti.uac-id.com/img_thumbnail/{{$profile->img_thumbnail}}">
+        @else
+            {{-- <meta property="og:image" itemprop="image" content="{{ asset('images/tumbreg.jpeg') }}"> --}}
+        @endif
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        {{-- <meta property="og:site_name" content="BaRoTi">
         <meta property="og:title" content="Bantal Aroma Terapi" />
         <meta property="og:description" content="{{ $about->deskripsi }}" />
         <meta property="og:image" itemprop="image" content="{{ asset('img_thumbnail/' . $profile->img_thumbnail) }}">
         <meta property="og:type" content="website" />
-        <meta property="og:updated_time" content="{{ $profile->created_at }}" />
+        <meta property="og:updated_time" content="{{ $profile->created_at }}" /> --}}
     @endif
 
     <!-- SITE TITLE -->
