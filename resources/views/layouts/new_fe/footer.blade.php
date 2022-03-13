@@ -17,7 +17,7 @@
 
                     <!-- For Retina Ready displays take a image with double the amount of pixels that your image will be 
                     displayed (e.g 408 x 120  pixels) -->
-                    <img src="{{asset('img_profile/'.$profile->img)}}" width="204" height="60" alt="footer-logo">
+                    <img src="{{asset('img_profile/'.$profile->image_header)}}" width="204" height="60" alt="footer-logo">
 
                     <!-- Text -->	
                     <p class="txt-color-05 mt-20">Bantal Aroma Terapy yang menggunakan bahan-bahan alami sebagai base pembuatannya.

@@ -34,7 +34,7 @@
         {{-- <title>Registrasi - Tilawati</title> --}}
         <meta property="og:title" content="BaRoTi"/>
         <meta property="og:description" content="{{$about->deskirpsi}}"/>
-        <meta property="og:image" itemprop="image" content="https://baroti.uac-id.com/img_thumbnail/{{$profile->img_thumbnail}}">
+        <meta property="og:image" itemprop="image" content="https://baroti.uac-id.com/img_thumbnail/{{$profile->thumbnail_home}}">
         {{-- @if ($profile->img_thumbnail !== null)
             
         @else
