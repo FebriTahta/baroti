@@ -177,7 +177,7 @@
                     <!-- IMAGE BLOCK -->
                     <div class="col-md-5 col-lg-6 m-top">
                         <div class="img-block right-column pc-15 mb-40">
-                            <img class="img-fluid" src="images/image-02.png" alt="about-image">
+                            <img class="img-fluid" src="{{asset('img_about/'.$about->img)}}" alt="about-image">
                         </div>
                     </div>
 
