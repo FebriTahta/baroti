@@ -148,7 +148,7 @@
             <!-- GOOGLE MAP -->
             <div class="row">
                 <div class="col-md-12">
-                    <div class="google-map mb-80">
+                    <div class="google-map mb-80" style="max-width: 100%">
 
                         <!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! -->
                         {{-- <iframe
