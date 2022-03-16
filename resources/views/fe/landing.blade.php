@@ -396,7 +396,7 @@
                                 <div class="sbox-1">
 
                                     <!-- Image -->
-                                    <img class="img-fluid" src="images/serv-01.png" alt="service-image" />
+                                    <img class="img-fluid" src="{{asset('img_bahan/'.$item->img)}}" alt="service-image" />
 
                                     <!-- Title -->
                                     <h5 class="h5-md txt-color-01">{{ $item->name }}</h5>
