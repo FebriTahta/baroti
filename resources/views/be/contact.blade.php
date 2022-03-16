@@ -144,8 +144,8 @@
                         @else
                             <div class="body">
                                 <div class="google-map mb-80" style="max-width: 100%">
-                                    {{-- <iframe src="{{$contact->map}}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}}
-                                    {!!$contact->map!!}
+                                    <iframe src="{{$contact->map}}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                    {{-- {!!$contact->map!!} --}}
                                 </div>
                             </div>
                         @endif
