@@ -185,7 +185,7 @@
             var formData = new FormData(this);
             $.ajax({
                 type: 'POST',
-                url: "{{ route('be.slider_dell') }}",
+                url: "{{ route('be.bahan_dell') }}",
                 data: formData,
                 cache: false,
                 contentType: false,
