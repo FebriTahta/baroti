@@ -42,7 +42,7 @@
                     <div class="txt-color-05 mt-15">
 
                         <!-- Email -->
-                        <p class="foo-email">E: <a href="mailto:{{$contact->email}}">{{$contact->email}}</a> <- click</p>
+                        <p class="foo-email">E:mail <a href="mailto:{{$contact->email}}">{{$contact->email}}</a> (click)</p>
 
                         <!-- Phone -->
                         <p>Phone : {{$contact->telp}}</p>
