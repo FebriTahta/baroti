@@ -148,15 +148,15 @@
             <!-- GOOGLE MAP -->
             <div class="row">
                 <div class="col-md-12">
-                    <div class="google-map mb-80">
+                    <div class="google-map mb-80" style="max-width: 100%">
 
                         <!-- Embedded Google Map using an iframe - to select your location find it on Google maps and paste the link as the iframe src. If you want to use the Google Maps API instead then have at it! -->
                         {{-- <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8393924898796!2d144.9536363151022!3d-37.817230742014345!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4e793770d3%3A0x9e44d6ad0d76ba7c!2zMTIxIEtpbmcgU3QsIE1lbGJvdXJuZSBWSUMgMzAwMCwg0JDQstGB0YLRgNCw0LvQuNGP!5e0!3m2!1sru!2sua!4v1469002590349"
                             width="600" height="450"></iframe> --}}
                         {{-- <iframe src="{{$data->map}}" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}}
-                        {!! $contact->map !!}
-
+                        {{-- {!! $contact->map !!} --}}
+                        <iframe src="{{$contact->map}}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
             </div> <!-- END GOOGLE MAP -->

@@ -82,7 +82,7 @@
                                     <div class="form-group">
                                         <label>ALAMAT</label>
                                         <textarea name="alamat" id="alamat" class="form-control" cols="30" rows="4"
-                                            required>{{$contact->alamat}}</textarea>
+                                            required>{!!$contact->alamat!!}</textarea>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-6">
@@ -143,9 +143,9 @@
                             </div>
                         @else
                             <div class="body">
-                                <div class="google-map mb-80">
-                                    {{-- <iframe src="{{$contact->map}}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe> --}}
-                                    {!!$contact->map!!}
+                                <div class="google-map mb-80" style="max-width: 100%">
+                                    <iframe src="{{$contact->map}}" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                    {{-- {!!$contact->map!!} --}}
                                 </div>
                             </div>
                         @endif
