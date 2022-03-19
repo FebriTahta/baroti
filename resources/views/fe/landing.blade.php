@@ -157,7 +157,7 @@
                                                 @if ($item->linkbutton->count() > 0)
                                                     @foreach ($item->linkbutton as $bt)
                                                         <!-- Button -->
-                                                        <a href="{{ $bt->link }}" target="_blank"
+                                                        <a href="{{ $bt->link }}" target="_blank" style="margin-right: 10px; margin-bottom: 10px"
                                                             class="btn btn-md btn-color-02 tra-white-hover">{{ $bt->name }}</a>
                                                     @endforeach
                                                 @endif
@@ -329,13 +329,10 @@
                                 <div class="sbox-13-txt">
 
                                     <!-- Title -->
-                                    <h5 class="h5-xl txt-color-01">Karena</h5>
+                                    <h5 class="h5-xl txt-color-01">{{$keunggulan->judul}}</h5>
 
                                     <!-- Text -->
-                                    <p class="txt-color-05">Bantal ini menggunakan Lavender Essential Oil yang sudah
-                                        dibuktikan keampuhannya sebagai salah satu penenang bagi orang insomnia. Aroma
-                                        Lavender sudah teruji secara ilmiah dapat menurunkan tingkat stress seseorang.
-                                        Bantal ini sangat cocok
+                                    <p class="txt-color-05">{!!$keunggulan->deskripsi!!}
                                     </p>
 
                                     <!-- Button -->
