@@ -200,7 +200,7 @@
                         <!-- POST TEXT -->
                         <div class="single-post-txt" style="text-align: justify">
                             <p class="txt-color-05">
-                                {{strip_tags($blog->deskripsi)}}
+                                {!!$blog->deskripsi!!}
                             </p>
                         </div>	<!-- END POST TEXT -->
                         <hr>
