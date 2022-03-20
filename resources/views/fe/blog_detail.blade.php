@@ -127,23 +127,9 @@
 
 @section('newfe_content')
 
-<section id="services-18" class="bg-color-01 wide-60 services-section division" style="margin-top: 100px">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-10 offset-lg-1">
-                <div class="section-title mb-60 text-center">
+{{-- <section id="services-18" class="bg-color-01 wide-60 services-section division" style="margin-top: 100px">
     
-                    <!-- Transparent Header -->
-                    <h2 class="tra-header txt-color-02">BLOG</h2>
-    
-                    <!-- Title 	-->
-                    <h3 class="h3-xl txt-color-01">{{$blog->judul}}</h3>
-    
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+</section> --}}
 <!-- PAGE HERO
     ============================================= -->	
     
@@ -156,6 +142,22 @@
     ============================================= -->
     <section id="single-post" class="bg-color-01 wide-90 blog-page-section division">
         <div class="container">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-10 offset-lg-1">
+                        <div class="section-title mb-60 text-center">
+            
+                            <!-- Transparent Header -->
+                            <h2 class="tra-header txt-color-02">BLOG</h2>
+            
+                            <!-- Title 	-->
+                            <h3 class="h3-xl txt-color-01">{{$blog->judul}}</h3>
+            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
              <div class="row">
                 <div class="col-md-12">
                     @if (\Session::has('success'))
