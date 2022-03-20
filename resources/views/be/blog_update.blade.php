@@ -106,30 +106,6 @@
 
 @section('script')
     <script>
-        var total_link = $("#total_link").val();
-        var i = total_link;
-        $('#add').click(function() {
-            var title = $("#title").val();
-            i++;
-            $('#dynamic_field').append('<div>' + i + '<a id="ya' + i + '"><tr id="row' + i +
-                '" class="dynamic-added"><hr><button type="button" name="remove" id="' + i +
-                '" class="btn btn-outline-danger btn-sm btn_remove">remove</button> <td><label>Link Marketplace</label><input type="text" name="name_m[]" class="form-control" placeholder="Tokopedia / Shopee / dsb "style="margin-top: 10px"><input type="text" class="form-control" placeholder="https://link"style="margin-top: 10px" name="link_m[' +
-                i + ']"></td><td></td></tr></a></div>');
-            $("#total_link").val(i);
-        });
-        $(document).on('click', '.btn_remove', function() {
-            var button_id = $(this).attr("id");
-            $('#ya' + button_id + '').remove();
-            
-        });
-
-        $(document).on('click', '.btn_hapus', function() {
-            
-            var button_id = $(this).attr("id");
-            $('#oke' + button_id + '').remove();
-            
-        });
-
         const previewImage = e => {
             const reader = new FileReader();
             reader.readAsDataURL(e.target.files[0]);
