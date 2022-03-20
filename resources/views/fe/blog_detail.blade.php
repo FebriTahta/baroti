@@ -330,7 +330,7 @@
 
                                     <!-- Text -->
                                     <div class="post-summary">
-                                        <a href="#" class="txt-color-05">{{$item->judul}}</a>
+                                        <a href="/blog/{{$item->slug}}" class="txt-color-05">{{$item->judul}}</a>
                                         <p class="txt-color-03">{{$item->komen->count()}} Comments</p>
                                     </div>
 
