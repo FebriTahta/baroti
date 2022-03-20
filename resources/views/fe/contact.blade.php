@@ -91,6 +91,10 @@
                                     href="{{ route('fe.contact') }}">Contacts</a>
                             </li>
 
+                            <!-- MEGAMENU -->
+                            <li aria-haspopup="true"><a href="{{ route('fe.blog') }}">Blog</a>
+                            </li> <!-- END MEGAMENU -->
+
                             @auth
                                 <li class="nl-simple" aria-haspopup="true">
                                     <a class="" href="{{ route('logout') }}"

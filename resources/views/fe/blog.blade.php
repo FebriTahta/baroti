@@ -18,23 +18,13 @@
     </div>
 @endsection --}}
 @section('menu')
-    <div id="loader-wrapper">
-        <div id="loading">
-            <div class="cssload-loader">
-                <div class="fancy-spinner">
-                    <div class="ring"></div>
-                    <div class="ring"></div>
-                    <div class="dot"></div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- HEADER
                            ============================================= -->
     <header id="header" class="header white-menu navbar-dark">
         <div class="header-wrapper">
 
 
+            <!-- MOBILE HEADER -->
             {{-- @yield('logo')
             <div class="wsmobileheader clearfix">
                 <span class="smllogo"><img src="{{ asset('images/baroti_black.png') }}" width="170" height="50"
@@ -110,7 +100,7 @@
                                 <li class="nl-simple" aria-haspopup="true">
                                     <a class="" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
-                                                                                                             document.getElementById('logout-form').submit();">
+                                                                                                                     document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
 
@@ -136,155 +126,96 @@
 @endsection
 
 @section('newfe_content')
-    <section id="about-3" class="bg-color-01 wide-60 about-section " style="margin-top: 50px">
-        <div class="container">
-            <!-- SECTION TITLE -->
-            <div class="row">
-                <div class="col-lg-10 offset-lg-1">
-                    <div class="section-title mb-60 text-center">
-                        <!-- Transparent Header -->
-                        <h2 class="tra-header txt-color-02">Perkenalkan</h2>
-                        <!-- Title 	-->
-                        <h3 class="h3-xl txt-color-01">BaRoTi</h3>
-                    </div>
+    <div id="loader-wrapper">
+        <div id="loading">
+            <div class="cssload-loader">
+                <div class="fancy-spinner">
+                    <div class="ring"></div>
+                    <div class="ring"></div>
+                    <div class="dot"></div>
                 </div>
             </div>
         </div>
-    </section>
-
-    @if ($about == null)
-        <div class="container text-center">
-            <h2>BELUM ADA DESKRIPSI</h2>
-        </div>
-    @else
-        <section id="about-2" style="margin-top: -100px" class="bg-color-01 wide-70 about-section division">
-            <div class="container">
-                <div class="row d-flex align-items-center m-row">
-                    <!-- TEXT BLOCK -->
-                    <div class="col-md-7 col-lg-6 m-bottom">
-                        <div class="txt-block left-column pc-15 mb-40">
-
-                            <!-- Section ID -->
-                            <h2 class="section-id txt-color-02">About Us</h2>
-
-                            <!-- Title -->
-                            <h3 class="h3-md txt-color-01">{{ $about->judul }}</h3>
-
-                            <!-- Text -->
-                            <p class="txt-color-05">{{ $about->deskirpsi }}
-                            </p>
-
-                        </div>
-                    </div> <!-- END TEXT BLOCK -->
-
-
-                    <!-- IMAGE BLOCK -->
-                    <div class="col-md-5 col-lg-6 m-top">
-                        <div class="img-block right-column pc-15 mb-40">
-                            <img class="img-fluid" src="{{asset('img_about/'.$about->img)}}" alt="about-image">
-                        </div>
-                    </div>
-
-
-                </div> <!-- End row -->
-            </div> <!-- End container -->
-        </section> <!-- END ABOUT-2 -->
-    @endif
-
-    @if ($bidang !== null)
-        <section id="about-3" class="bg-color-01 wide-60 about-section ">
-            <div class="container">
-                <!-- SECTION TITLE -->
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1">
-                        <div class="section-title mb-60 text-center">
-                            <!-- Transparent Header -->
-                            <h2 class="tra-header txt-color-02">Bidang</h2>
-                            <!-- Title 	-->
-                            <h3 class="h3-xl txt-color-01">{{ $bidang->judul }}</h3>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about-">
-            <div class="container">
-
-                <p>{!! $bidang->deskripsi !!}</p>
-
-            </div>
-        </section>
-    @endif
-
-    <!-- TEAM-1
-                ============================================= -->
-    <section id="team-1" class="bg-color-01 wide-60 team-section division">
+    </div>
+    <section id="services-18" class="bg-color-01 wide-60 services-section division" style="margin-top: 100px">
         <div class="container">
+
+
             <!-- SECTION TITLE -->
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="section-title mb-60 text-center">
 
                         <!-- Transparent Header -->
-                        <h2 class="tra-header txt-color-02">Our Team</h2>
+                        <h2 class="tra-header txt-color-02">BLOG</h2>
 
                         <!-- Title 	-->
-                        <h3 class="h3-xl txt-color-01">Relax, You're In Good Hands</h3>
+                        <h3 class="h3-xl txt-color-01">Our Blog</h3>
 
                     </div>
                 </div>
             </div>
 
 
-            <!-- TEAM MEMBERS WRAPPER -->
-            <div class="tm-wrapper">
-                <div class="row">
+            <!-- SERVICES-18 WRAPPER -->
+            <section id="blog-1" class="bg-color-01 wide-60 blog-section division">				
+                <div class="container">
 
-                    @if ($team->count() > 0)
-                        @foreach ($team as $item)
-                            <div class="col-md-6 col-lg-3">
-                                <div class="team-member">
 
-                                    <!-- Team Member Photo -->
-                                    <div class="team-member-photo">
-                                        <div class="hover-overlay">
+                    <!-- BLOG POSTS HOLDER -->
+                     <div class="row">
 
-                                            <img class="img-fluid" src="{{ asset('img_team/' . $item->img) }}"
-                                                alt="team-member-foto">
-
-                                            <!-- Social Icons -->
-                                            {{-- <div class="tm-social clearfix">
-                                        <ul class="text-center clearfix">
-                                            <li><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a>
-                                            </li>
-                                            <li><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></li>
-                                            <li><a href="#" class="ico-linkedin"><i class="fab fa-linkedin-in"></i></a>
-                                            </li>
-                                        </ul>
-                                    </div> --}}
-
-                                        </div>
-                                    </div>
-
-                                    <!-- Team Member Meta -->
-                                    <div class="tm-meta">
-                                        <h6 class="h6-lg txt-color-01">{{ $item->nama }}</h6>
-                                        <span class="txt-color-06">{{ $item->jabatan }}</span>
-                                    </div>
-
+                        @if ($blog->count() == 0)
+                            <div class="col-md-12">
+                                <div class="blog-post text-center text-danger">
+                                    <h2>BELUM ADA POST</h2>
                                 </div>
                             </div>
+                        @endif
+                        @foreach ($blog as $item)
+                        <div class="col-md-6 col-lg-4">
+                            <div class="blog-post">
+
+                                <!-- BLOG POST IMAGE -->
+                                <div class="blog-post-img">
+                                   <img class="img-fluid" src="{{asset('img_blog/'.$item->img_thumbnail)}}" alt="blog-post-image" />	
+                               </div>
+
+                                <!-- BLOG POST TITLE -->
+                               <div class="blog-post-txt">
+                                   <!-- Post Data -->
+                                   <span class="txt-color-06">{{$item->jenis->name}}</span>
+                                   <!-- Post Title -->
+                                   <h5 class="h5-sm txt-color-01">
+                                       <a href="/blog/{{$item->slug}}">{{$item->judul}}</a>
+                                   </h5>
+                                   <!-- Post Text -->
+                                   <p class="txt-color-05">
+                                       <?php $panjang = strlen($item->deskripsi)?>
+                                        @if ($panjang > 280)
+                                            {{substr(strip_tags($item->deskripsi),0,280)}} ... 
+                                        @else
+                                            {{strip_tags($item->deskripsi)}}
+                                        @endif
+                                   </p>
+                                   <!-- Post Author -->
+                                   <p class="post-author txt-color-05">{{$item->created_at}}</p>	
+
+                               </div>
+
+                           </div>
+                        </div>	<!-- END  BLOG POST #1 -->
                         @endforeach
-                    @else
-                        <div class="col-md-12 text-center">
-                            <h2>BELUM ADA TEAM</h2>
-                        </div>
-                    @endif
+                         <!-- BLOG POST #1 -->
 
 
-                </div> <!-- End row -->
-            </div> <!-- END TEAM MEMBERS WRAPPER -->
+                    </div>	<!-- END BLOG POSTS HOLDER -->
+
+
+                </div>	   <!-- End container -->		
+            </section>	<!-- END BLOG-1 -->
+
+
         </div> <!-- End container -->
-    </section> <!-- END TEAM-1 -->
+    </section> <!-- END SERVICES-18 -->
 @endsection

@@ -132,6 +132,14 @@
                             <li><a href="{{route('be.slider')}}">Slider</a></li>
                         </ul>
                     </li>
+                    <li class="g_heading">Blog & Kategori</li>
+                    <li class="active">
+                        <a href="javascript:void(0)" class="has-arrow" aria-expanded="true"><i class="ti-pencil-alt"></i><span>Blog & Kategori</span></a>
+                        <ul>
+                            <li><a href="{{route('be.blog')}}">Blog</a></li>
+                            <li><a href="{{route('be.jenis')}}">Jenis / Kategori Blog</a></li>
+                        </ul>
+                    </li>
                     <li class="g_heading">Product & Bahan</li>
                     <li class="active">
                         <a href="javascript:void(0)" class="has-arrow" aria-expanded="true"><i class="ti-pencil-alt"></i><span>Bahan & Product</span></a>

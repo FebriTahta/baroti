@@ -165,7 +165,7 @@
 <script src="{{ asset('js/jquery.datetimepicker.full.js') }}"></script>
 <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
 <script src="{{ asset('js/jquery.ajaxchimp.min.js') }}"></script>
-
+<script src="{{asset('js/bootstrap.min.js')}}"></script>	
 <!-- Custom Script -->
 <script src="{{ asset('js/custom.js') }}"></script>
 

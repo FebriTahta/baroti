@@ -9,6 +9,7 @@ use App\Http\Controllers\SliderCont;
 use App\Http\Controllers\LandingCont;
 use App\Http\Controllers\TeamCont;
 use App\Http\Controllers\BidangCont;
+use App\Http\Controllers\BlogCont;
 use App\Http\Controllers\ButtonCont;
 use App\Http\Controllers\BahanCont;
 use App\Http\Controllers\TestiCont;
@@ -16,6 +17,7 @@ use App\Http\Controllers\AjakanCont;
 use App\Http\Controllers\PesanCont;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\JenisCont;
 use App\Http\Controllers\KeunggulanCont;
 
 
@@ -42,6 +44,8 @@ Auth::routes();
 Route::get('/about-us',[AboutController::class,'index'])->name('fe.about');
 Route::get('/our-product',[ProductCont::class,'product'])->name('fe.product');
 Route::get('/contact-us',[ContactCont::class,'contact'])->name('fe.contact');
+Route::get('/blog',[BlogCont::class,'blog'])->name('fe.blog');
+Route::get('/blog/{slug}',[BlogCont::class,'blog_detail'])->name('fe.blog_detail');
 
 // Route::get('/',[LandingCont::class,'landing'])->name('landing');
 // Route::get('/daftar-product',[ProductCont::class,'index'])->name('list.product');
@@ -103,6 +107,19 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     //CONTACT
     Route::get('/admin-contact',[ContactCont::class,'be_contact'])->name('be.contact');
     Route::post('/admin-contact-post',[ContactCont::class,'be_contact_post'])->name('be.contact_post');
+    //BE
+    //BLOG
+    Route::get('/admin-blog',[BlogCont::class,'be_blog'])->name('be.blog');
+    Route::post('/admin-blog-post',[BlogCont::class,'be_blog_post'])->name('be.blog_post');
+    Route::get('/admin-blog-update/{slug_blog}',[BlogCont::class,'be_blog_update'])->name('be.blog_update');
+    Route::post('/submit-komen',[BlogCont::class,'submit_komen'])->name('submit_komen');
+    Route::get('/hapus-komen/{id_komen}',[BlogCont::class,'hapus_komen'])->name('hapus_komen');
+    
+    //BE
+    //JENIS / KATEGORI BLOG
+    Route::get('/admin-jenis-kategori',[JenisCont::class,'be_jenis'])->name('be.jenis');
+    Route::post('/admin-jenis-kategori-post',[JenisCont::class,'be_jenis_post'])->name('be.jenis_post');
+    Route::post('/admin-jenis-kategori-dell',[JenisCont::class,'be_jenis_dell'])->name('be.jenis_dell');
     //BE
     //BUTTON
     Route::get('/admin-daftar-link-button',[ButtonCont::class,'be_button'])->name('be.button');

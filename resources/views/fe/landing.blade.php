@@ -76,6 +76,7 @@
                             <li aria-haspopup="true"><a href="{{ route('fe.product') }}">Product</a>
                             </li> <!-- END MEGAMENU -->
 
+                            
 
                             {{-- <!-- DROPDOWN MENU -->
                         <li><a href="#">Gallery</a>
@@ -86,6 +87,10 @@
                             <li class="nl-simple" aria-haspopup="true"><a
                                     href="{{ route('fe.contact') }}">Contacts</a>
                             </li>
+
+                            <!-- MEGAMENU -->
+                            <li aria-haspopup="true"><a href="{{ route('fe.blog') }}">Blog</a>
+                            </li> <!-- END MEGAMENU -->
 
                             @auth
                                 <li class="nl-simple" aria-haspopup="true">
