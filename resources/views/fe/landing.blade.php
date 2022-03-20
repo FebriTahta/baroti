@@ -162,7 +162,7 @@
                                                 @if ($item->linkbutton->count() > 0)
                                                     @foreach ($item->linkbutton as $bt)
                                                         <!-- Button -->
-                                                        <a href="{{ $bt->link }}" target="_blank" style="margin-right: 10px; margin-bottom: 10px"
+                                                        <a href="{{ $bt->link }}" target="_blank" style="margin: 10px"
                                                             class="btn btn-md btn-color-02 tra-white-hover">{{ $bt->name }}</a>
                                                     @endforeach
                                                 @endif
