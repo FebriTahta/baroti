@@ -86,7 +86,9 @@
                             <li class="nl-simple" aria-haspopup="true"><a href="{{ route('fe.about') }}">About Us</a>
                             </li>
 
-
+                            <li class="nl-simple" aria-haspopup="true"><a href="{{ route('fe.team') }}">Our Team</a>
+                            </li>
+                            
                             <!-- MEGAMENU -->
                             <li aria-haspopup="true"><a href="{{ route('fe.product') }}">Product</a>
                             </li> <!-- END MEGAMENU -->
