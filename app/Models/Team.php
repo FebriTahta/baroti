@@ -12,6 +12,7 @@ class Team extends Model
         'nama',
         'slug',
         'img',
-        'jabatan'
+        'jabatan',
+        'deskripsi'
     ];
 }

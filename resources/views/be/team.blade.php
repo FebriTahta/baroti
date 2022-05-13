@@ -7,7 +7,7 @@
                 <div class="col-xl-12">
                     <div id="errList" class="text-uppercase"></div>
                 </div>
-                <div class="col-xl-4">
+                <div class="col-xl-6">
                     <div class="card">
                         <div class="body">
                             <form id="formadd" method="POST"> @csrf
@@ -45,7 +45,14 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-xl-6">
+                    <div class="container">
+                        <div class="card text-center" style="padding: 20px">
+                            <h5>Scroll kebawah untuk melihat data team kamu</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
                     <div class="card">
                         <div class="header">
                             <h2>Daftar Team</h2>
@@ -58,6 +65,7 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Jabatan</th>
+                                            <th>exp</th>
                                             <th>Foto</th>
                                             <th>Option</th>
                                         </tr>
@@ -67,6 +75,7 @@
                                         <tr>
                                             <th>Name</th>
                                             <th>Jabatan</th>
+                                            <th>exp</th>
                                             <th>Foto</th>
                                             <th>Option</th>
                                         </tr>
@@ -341,7 +350,12 @@
                         name: 'jabatan'
                     },
                     {
-                        "width":75,
+                        "width":5,
+                        data: 'exp',
+                        name: 'exp'
+                    },
+                    {
+                        "width":70,
                         data: 'image',
                         name: 'img'
                     },

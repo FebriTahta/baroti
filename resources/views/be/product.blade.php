@@ -222,20 +222,6 @@
             };
         };
 
-        // var i = 1;
-        // $('#add').click(function() {
-        //     var title = $("#title").val();
-        //     i++;
-        //     $('#dynamic_field').append('<div><a id="ya' + i + '"><tr id="row' + i +
-        //         '" class="dynamic-added"><hr><button type="button" name="remove" id="' + i +
-        //         '" class="btn btn-outline-danger btn-sm btn_remove">remove</button> <td><label>Link Marketplace</label><input type="text" name="name_m[]" class="form-control" placeholder="Tokopedia / Shopee / dsb "style="margin-top: 10px"><input type="text" class="form-control" placeholder="https://link"style="margin-top: 10px" name="link_m[' +
-        //         i + ']"></td><td></td></tr></a></div>');
-        // });
-        // $(document).on('click', '.btn_remove', function() {
-        //     var button_id = $(this).attr("id");
-        //     $('#ya' + button_id + '').remove();
-        // });
-
         $('#formadd').submit(function(e) {
             e.preventDefault();
             var formData = new FormData(this);
@@ -253,7 +239,6 @@
                 success: function(response) {
                     if (response.status == 200) {
                         $('#modal_1').modal('hide');
-                        // window.location.reload();
                         $("#formadd")[0].reset();
                         var oTable = $('#example').dataTable();
                         oTable.fnDraw(false);
@@ -336,21 +321,6 @@
                         data: 'name',
                         name: 'name'
                     },
-                    // {
-                    //     "width": 10,
-                    //     data: 'harga',
-                    //     name: 'harga'
-                    // },
-                    // {
-                    //     "width": 15,
-                    //     data: 'kategori',
-                    //     name: 'kategori.name'
-                    // },
-                    // {
-                    //     "width": 15,
-                    //     data: 'tag',
-                    //     name: 'tag'
-                    // },
                     {
                         "width": 5,
                         data: 'opsi',

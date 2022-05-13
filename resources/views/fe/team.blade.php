@@ -41,13 +41,13 @@
                         alt="mobile-logo" /></span>
                 <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
             </div> --}}
-            @if ($profile !== null)
+            {{-- @if ($profile !== null)
                 <div class="wsmobileheader clearfix">
                     <span class="smllogo"><img src="{{ asset('img_profile/' . $profile->image_header) }}"
                             width="170" height="50" alt="mobile-logo" /></span>
                     <a id="wsnavtoggle" class="wsanimated-arrow"><span></span></a>
                 </div>
-            @endif
+            @endif --}}
 
             <!-- NAVIGATION MENU -->
             <div class="wsmainfull menu clearfix">
@@ -84,6 +84,10 @@
 
                             <!-- SIMPLE NAVIGATION LINK -->
                             <li class="nl-simple" aria-haspopup="true"><a href="{{ route('fe.about') }}">About Us</a>
+                            </li>
+
+                            <!-- SIMPLE NAVIGATION LINK -->
+                            <li class="nl-simple" aria-haspopup="true"><a href="{{ route('fe.team') }}">Our Team</a>
                             </li>
 
 
@@ -133,87 +137,130 @@
 
         </div> <!-- End header-wrapper -->
     </header> <!-- END HEADER -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 @endsection
 
 @section('newfe_content')
-    <section id="about-3" class="bg-color-01 wide-60 about-section " style="margin-top: 50px">
+    
+
+    <!-- TEAM-1
+                ============================================= -->
+    <section id="team-1" class="bg-color-01 wide-60 team-section division" style="margin-top: 100px">
         <div class="container">
             <!-- SECTION TITLE -->
             <div class="row">
                 <div class="col-lg-10 offset-lg-1">
                     <div class="section-title mb-60 text-center">
+
                         <!-- Transparent Header -->
-                        <h2 class="tra-header txt-color-02">Perkenalkan</h2>
+                        <h2 class="tra-header txt-color-02">Our Team</h2>
+
                         <!-- Title 	-->
-                        <h3 class="h3-xl txt-color-01">BaRoTi</h3>
+                        <h3 class="h3-xl txt-color-01">Relax, You're In Good Hands</h3>
+
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    @if ($about == null)
-        <div class="container text-center">
-            <h2>BELUM ADA DESKRIPSI</h2>
-        </div>
-    @else
-        <section id="about-2" style="margin-top: -100px" class="bg-color-01 wide-70 about-section division">
-            <div class="container">
-                <div class="row d-flex align-items-center m-row">
-                    <!-- TEXT BLOCK -->
-                    <div class="col-md-7 col-lg-6 m-bottom">
-                        <div class="txt-block left-column pc-15 mb-40">
 
-                            <!-- Section ID -->
-                            <h2 class="section-id txt-color-02">About Us</h2>
+            <!-- TEAM MEMBERS WRAPPER -->
+            <div class="tm-wrapper">
+                <div class="row">
 
-                            <!-- Title -->
-                            <h3 class="h3-md txt-color-01">{{ $about->judul }}</h3>
+                    @if ($team->count() > 0)
+                        @foreach ($team as $item)
+                            <div class="col-md-6 col-lg-3">
+                                <div class="team-member">
 
-                            <!-- Text -->
-                            <p class="txt-color-05">{{ $about->deskirpsi }}
-                            </p>
+                                    <!-- Team Member Photo -->
+                                    <div class="team-member-photo">
+                                        <div class="hover-overlay">
 
+                                            <img class="img-fluid" src="{{ asset('img_team/' . $item->img) }}"
+                                                alt="team-member-foto">
+
+                                            <!-- Social Icons -->
+                                            {{-- <div class="tm-social clearfix">
+                                        <ul class="text-center clearfix">
+                                            <li><a href="#" class="ico-facebook"><i class="fab fa-facebook-f"></i></a>
+                                            </li>
+                                            <li><a href="#" class="ico-twitter"><i class="fab fa-twitter"></i></a></li>
+                                            <li><a href="#" class="ico-linkedin"><i class="fab fa-linkedin-in"></i></a>
+                                            </li>
+                                        </ul>
+                                    </div> --}}
+
+                                        </div>
+                                    </div>
+
+                                    <!-- Team Member Meta -->
+                                    <div class="tm-meta">
+                                        <h6 class="h6-lg txt-color-01"><a href="#" data-jabatan="{{$item->jabatan}}" data-img="{{asset('img_team/'. $item->img)}}" data-deskripsi="{!!$item->deskripsi!!}" data-nama="{{$item->nama}}" data-toggle="modal" data-target="#modalshow">{{ $item->nama }}</a></h6>
+                                        <span class="txt-color-06">{{ $item->jabatan }}</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="col-md-12 text-center">
+                            <h2>BELUM ADA TEAM</h2>
                         </div>
-                    </div> <!-- END TEXT BLOCK -->
-
-
-                    <!-- IMAGE BLOCK -->
-                    <div class="col-md-5 col-lg-6 m-top">
-                        <div class="img-block right-column pc-15 mb-40">
-                            <img class="img-fluid" src="{{asset('img_about/'.$about->img)}}" alt="about-image">
-                        </div>
-                    </div>
+                    @endif
 
 
                 </div> <!-- End row -->
-            </div> <!-- End container -->
-        </section> <!-- END ABOUT-2 -->
-    @endif
+            </div> <!-- END TEAM MEMBERS WRAPPER -->
+        </div> <!-- End container -->
 
-    @if ($bidang !== null)
-        <section id="about-3" class="bg-color-01 wide-60 about-section ">
-            <div class="container">
-                <!-- SECTION TITLE -->
-                <div class="row">
-                    <div class="col-lg-10 offset-lg-1">
-                        <div class="section-title mb-60 text-center">
-                            <!-- Transparent Header -->
-                            <h2 class="tra-header txt-color-02">Bidang</h2>
-                            <!-- Title 	-->
-                            <h3 class="h3-xl txt-color-01">{{ $bidang->judul }}</h3>
-                        </div>
-                    </div>
+        <div class="modal fade" id="modalshow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header text-center" style="background-color: pink">
+                  <h5 class="modal-title text-capitalize text-white" id="nama">Modal title </h5> <i id="jabatan" class="text-white"> </i>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
                 </div>
+                <div class="modal-body">
+                    <img id="img" style="max-width: 100%" alt="">
+                </div>
+                <hr>
+                <div class="modal-body">
+                  <p id="deskripsi"></p>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+              </div>
             </div>
-        </section>
-
-        <section id="about-">
-            <div class="container">
-
-                <p>{!! $bidang->deskripsi !!}</p>
-
-            </div>
-        </section>
-    @endif
+          </div>
+    </section> <!-- END TEAM-1 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    <script src="{{asset('assets/bundles/libscripts.bundle.js')}}"></script>
+    <script src="{{asset('assets/bundles/vendorscripts.bundle.js')}}"></script>
+    <script>
+        $('#modalshow').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget)
+            var nama = button.data('nama')
+            var deskripsi = button.data('deskripsi')
+            var img = button.data('img')
+            var jabatan = button.data('jabatan')
+            var modal = $(this)
+            modal.find('.modal-header #nama').html(nama);
+            modal.find('.modal-header #jabatan').html(' ( '+jabatan+' )');
+            if (deskripsi == null) {
+                modal.find('.modal-body #deskripsi').html('null');
+                console.log('null');    
+            }else{
+                modal.find('.modal-body #deskripsi').html(deskripsi);
+                console.log(deskripsi);
+            }
+            document.getElementById('img').src = img;
+            console.log(nama);
+            
+        })
+    </script>
 @endsection

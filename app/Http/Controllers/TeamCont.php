@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Team;
+use App\Models\Profile;
 use Validator;
 use DataTables;
 use Illuminate\Support\Str;
@@ -9,6 +10,25 @@ use Illuminate\Http\Request;
 
 class TeamCont extends Controller
 {
+    public function team(Request $request)
+    {
+        $team = Team::all();
+        $profile = Profile::first();
+        return view('fe.team',compact('team','profile'));
+    }
+
+    public function be_team_exp($id_team)
+    {
+        $team = Team::find($id_team);
+        return view('be.team_exp',compact('team'));
+    }
+    
+    public function be_teamexp_add(Request $request)
+    {
+        Team::find($request->id)->update(['deskripsi'=>$request->deskripsi]);
+        return redirect('/admin-our-team');
+    }
+
     public function be_team(Request $request)
     {
         if ($request->ajax()) {
@@ -20,13 +40,24 @@ class TeamCont extends Controller
                     return $image;
                     // return '-';
                 })
+                ->addColumn('exp', function($data){
+                    
+                    if ($data->deskripsi !== null) {
+                        # code...
+                        return 'ok';
+                    }else {
+                        # code...
+                        return 'null';
+                    }
+                })
                 ->addColumn('action', function($data){
                     $actionBtn = ' <a data-toggle="modal" data-target="#modaledit" data-id="'.$data->id.'" data-nama="'.$data->nama.'" data-jabatan="'.$data->jabatan.'"
                     data-src="'.asset('img_team/'.$data->img).'" data-img="'.$data->img.'" class="delete btn btn-info btn-sm"><i class="text-white fa fa-pencil"></i></a>';
                     $actionBtn.= ' <a data-target="#modaldel" data-id="'.$data->id.'" data-img="'.$data->img.'" data-toggle="modal" href="javascript:void(0)" class="delete btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>';
+                    $actionBtn.= ' <a href="/admin-our-team-exp/'.$data->id.'" class="info btn btn-info btn-sm text-white"><i>exp</i></a>';
                     return $actionBtn;
                 })
-                ->rawColumns(['action','image'])
+                ->rawColumns(['action','image','exp'])
                 ->make(true);
         };
 

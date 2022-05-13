@@ -46,6 +46,7 @@ Route::get('/our-product',[ProductCont::class,'product'])->name('fe.product');
 Route::get('/contact-us',[ContactCont::class,'contact'])->name('fe.contact');
 Route::get('/blog',[BlogCont::class,'blog'])->name('fe.blog');
 Route::get('/blog/{slug}',[BlogCont::class,'blog_detail'])->name('fe.blog_detail');
+Route::get('/team',[TeamCont::class,'team'])->name('fe.team');
 
 // Route::get('/',[LandingCont::class,'landing'])->name('landing');
 // Route::get('/daftar-product',[ProductCont::class,'index'])->name('list.product');
@@ -85,6 +86,8 @@ Route::group(['middleware' => ['auth', 'CheckRole:admin']], function () {
     Route::get('/admin-our-team',[TeamCont::class,'be_team'])->name('be.team');
     Route::post('/admin-our-team-post',[TeamCont::class,'be_team_post'])->name('be.team_post');
     Route::post('/admin-our-team-dell',[TeamCont::class,'be_team_dell'])->name('be.team_dell');
+    Route::get('/admin-our-team-exp/{id_team}',[TeamCont::class,'be_team_exp'])->name('be.team_exp');
+    Route::post('/add-exp-team',[TeamCont::class,'be_teamexp_add']);
     //BE
     //ABOUT
     Route::get('/admin-about-us',[AboutController::class,'be_about'])->name('be.about');
